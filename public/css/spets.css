@@ -1,0 +1,118 @@
+:root {
+    --blue: rgb(36 172 212);
+    --blue2: rgb(20 84 100);
+    --blue3: rgb(222 236 255);
+    
+}
+
+
+html {
+    font-family: ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    font-size: 18px;
+}
+
+.spets-container {
+    text-align: center;
+}
+
+.special-price a {
+    color: var(--blue);
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 6px 0;
+}
+
+.item .info {
+    margin-left: 10px;
+    text-align: left;
+}
+.item .result {
+    margin-right: 10px;
+    text-align: right;
+}
+
+.item .info .name {
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--blue2);
+}
+
+.item .result input {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--blue2);
+    padding: 4px 8px;
+    border-radius: 14px;
+    border: 1px solid var(--blue);
+    width: 80px;
+    text-align: center;
+}
+
+
+.item .result input::-webkit-outer-spin-button, .item .result input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+
+}
+.item .result input {
+    -moz-appearance: textfield;
+}
+
+.item .result input:focus, .customer input:focus {
+    border-color: var(--blue2);
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+.all-summ {
+    width: 100%;
+    text-align: center;
+    color: var(--blue2);
+    font-weight: bold;
+    margin: 4px;
+    margin-top: 16px;
+}
+
+.company select {
+    font-size: 18px;
+    border-radius: 14px;
+    padding: 4px 8px;
+    margin: 4px;
+    width: 90%;
+    text-align: center;
+    border: 1px solid var(--blue);
+}
+
+.customer h4 {
+    margin: 4px;
+}
+
+.customer input {
+    font-size: 18px;
+    border-radius: 14px;
+    padding: 4px 8px;
+    border: 1px solid var(--blue);
+    width: 90%;
+    text-align: center;
+}
+
+.submit input {
+    font-size: 22px;
+    font-weight: bold;
+    width: 90%;
+    margin: 10px 0;
+    padding: 4px 8px;
+    background-color: var(--blue);
+    color: #fff;
+    border: 1px solid var(--blue2);
+    border-radius: 14px;
+}

@@ -1,0 +1,201 @@
+:root {
+    --blue: rgb(36 172 212);
+    --blue2: rgb(20 84 100);
+    
+}
+
+body {
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.auth {
+    text-align: center;
+}
+
+.auth h1 {
+    color: var(--blue2);
+}
+.auth form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.auth form input {
+    width: 50%;
+    min-width: 250px;
+    font-size: 18px;
+    margin: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.auth form input[type=text]{
+    border: 1px solid var(--blue);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 2px;
+    color: var(--blue2);
+}
+.auth form input[type=text]:focus{
+    border-color: inherit;
+    -webkit-box-shadow: none;
+	box-shadow: none;
+    outline-width: 0;
+}
+
+.auth form input[type=submit]{
+    background-color: var(--blue);
+    border: none;
+    border-radius: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+/* -- main -- */
+.nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.nav .item {
+    width: 120px;
+    background-color: var(--blue);
+    color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    font-size: 22px;
+}
+.nav a {
+    text-decoration: none;
+    margin: 10px;
+}
+
+.nav .item img {
+    width: 80px;
+    margin-bottom: 8px;
+}
+.nav .item .svg-color {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(274deg) brightness(102%) contrast(103%);
+}
+
+
+
+
+.top-nav {
+    margin: 0;
+    padding: 3px;
+    background-color: #eee;
+}
+.top-nav a {
+    text-decoration: underline;
+    color: #777;
+    margin: 0 6px;
+}
+
+.products {
+    border-collapse: collapse;
+    width: 98%;
+    margin: auto;
+}
+
+.products td, #products th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.products tr:nth-child(even){background-color: #f2f2f2;}
+
+.products tr:hover {background-color: #ddd;}
+
+.products th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--blue);
+    text-align: center;
+    color: white;
+}
+
+.products th:last-child, .products td:last-child {
+    width: 100px;
+    text-align: center;
+}
+
+
+.products img {
+    width: 18px;
+    height: 18px;
+}
+
+.products button {
+    margin: 0 2px;
+}
+.products .x2 {
+    text-align: center;
+    width: 40px;
+    padding: 0;
+}
+
+.products .del {
+    background-color: #faa;
+    border: 2px solid red;
+    border-radius: 6px;
+    padding: 2px 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.products .edit {
+    background-color: var(--blue);
+    border: 2px solid var(--blue2);
+    border-radius: 6px;
+    padding: 2px 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.products input {
+    font-size: 18px;
+    width: 100%;
+    border: 1px solid #222;
+    background-color: transparent;
+    padding: 4px;
+}
+
+.products input::-webkit-outer-spin-button, .products input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+
+}
+.products input {
+    -moz-appearance: textfield;
+}
+.products input[type=submit], .products .calculate-button{
+    background-color: var(--blue);
+    font-weight: bold;
+    color: #fff;
+}
+
+.add-button {
+    display: inline-block;
+}
+.add-button a {
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 50vh;
+    padding: 4px 10px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+.add-button img {
+    width: 20px;
+}

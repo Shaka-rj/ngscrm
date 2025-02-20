@@ -1,0 +1,98 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{{ asset('css/spets.css') }}">
+</head>
+<body>
+    <div class="spets-container">
+        <div class="special-price">
+            <a href="#">Maxsus narx buyicha hisoblash</a>
+        </div>
+        <br>
+        <form id="form" method="POST" action="{{ route('user.spets.store') }}">
+            @csrf
+            @foreach ($products as $product)
+                <div class="item m">
+                    <div class="info">
+                        <div class="name">
+                            {{ $product->name }}
+                        </div>
+                        <div class="price">
+                            {{ number_format($product->price_after_vat, 2, '.', ' ') }}
+                        </div>
+                    </div>
+                    <div class="result">
+                        <div class="input">
+                            <input type="number" class="user-input" name="s{{ $loop->iteration }}">
+                            <input type="hidden" name="id{{ $loop->iteration }}" value="{{ $product->id }}">
+                            <p id="n{{ $loop->iteration }}" hidden>{{ $product->price_after_vat }}</p>
+                        </div>
+                        <div class="summ">
+                            <span id="m{{ $loop->iteration }}">0.00</span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            @endforeach
+            
+            <div class="all-summ">
+                <span id="jami">0.00</span>
+            </div>
+            
+            <div class="company">
+                <select name="company">
+                    <option value="PHARMED UNION">PHARMED UNION</option>
+                    <option value="BIONYX">BIONYX</option>
+                </select> 
+            </div>
+            
+            
+            <div class="customer">
+                <h4>Haridor</h4>
+                <input type="text" name="customer">
+            </div>
+            
+            <div class="submit">
+                <input type="submit" value="Yaratish">
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        let form = document.getElementById('form');
+        let m_count = form.getElementsByClassName('m').length;
+        const inputs = document.getElementsByClassName('user-input');
+        
+        let MaxsulotNarx = {};
+        function maxsulothisob(){
+            for (let i=1; i<=m_count; i++){
+                let narx = parseFloat(document.getElementById('n' + i).innerHTML);
+                MaxsulotNarx[i] = narx;
+                inputs[i-1].addEventListener('input', hisoblash);
+            }
+        }
+        
+        maxsulothisob();
+        
+        
+        function hisoblash(){
+            let summa = 0;
+            for (let i=1; i<=m_count; i++){
+                let soni = parseFloat(inputs[i-1].value);
+                if (isNaN(soni))
+                    soni = 0;
+                let narxi = soni * MaxsulotNarx[i];
+                
+                
+                summa = summa + narxi;
+                narxi = narxi.toFixed(2);
+                
+                document.getElementById('m' + i).innerHTML = narxi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            }
+            
+            
+            document.getElementById('jami').innerHTML = summa.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        }
+    </script>
+</body>
+</html>
