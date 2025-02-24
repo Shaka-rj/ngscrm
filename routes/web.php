@@ -15,7 +15,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::prefix('user')->name('user.')->group(function() {
-    Route::get('spets/create', [SpetsController::class, 'create'])->name('user.spets.create');
-    Route::post('spets/store', [SpetsController::class, 'store'])->name('user.spets.store');
-    Route::get('spets/{id}', [SpetsController::class, 'show'])->name('user.spets.show');
+    Route::get('spets', [SpetsController::class, 'index']);
+    Route::get('spets/create', [SpetsController::class, 'create'])->name('spets.create');
+    Route::post('spets/store', [SpetsController::class, 'store'])->name('spets.store');
+    Route::get('spets/{id}', [SpetsController::class, 'show'])->name('spets.show');
 });
