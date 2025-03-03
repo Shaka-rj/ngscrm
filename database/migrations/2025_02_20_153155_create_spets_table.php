@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('spets', function (Blueprint $table) {
             $table->id();
+            $table->integer('custom_id');
+            $table->year('year'); 
             $table->string('company');
             $table->string('customer');
             $table->decimal('summ', 11, 2);

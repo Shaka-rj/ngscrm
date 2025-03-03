@@ -6,12 +6,12 @@
 <body>
     <div class="spets-container">
         <div class="special-price">
-            <a href="{{ route('user.spets.create2') }}">Maxsus narx buyicha hisoblash</a>
+            <a href="{{ route('user.spets.create') }}">Odatiy narx</a>
         </div>
         <br>
         <form id="form" method="POST" action="{{ route('user.spets.store') }}">
             @csrf
-            <input type="hidden" name="type_price" value="0">
+            <input type="hidden" name="type_price" value="1">
             @foreach ($products as $product)
                 <div class="item m">
                     <div class="info">
@@ -19,14 +19,14 @@
                             {{ $product->name }}
                         </div>
                         <div class="price">
-                            {{ number_format($product->price_after_vat, 2, '.', ' ') }}
+                            {{ number_format($product->price_after_vat2, 2, '.', ' ') }}
                         </div>
                     </div>
                     <div class="result">
                         <div class="input">
                             <input type="number" class="user-input" name="s{{ $loop->iteration }}">
                             <input type="hidden" name="id{{ $loop->iteration }}" value="{{ $product->id }}">
-                            <p id="n{{ $loop->iteration }}" hidden>{{ $product->price_after_vat }}</p>
+                            <p id="n{{ $loop->iteration }}" hidden>{{ $product->price_after_vat2 }}</p>
                         </div>
                         <div class="summ">
                             <span id="m{{ $loop->iteration }}">0.00</span>
