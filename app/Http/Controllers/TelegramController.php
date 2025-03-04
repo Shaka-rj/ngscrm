@@ -7,6 +7,16 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TelegramController extends Controller
 {
+    public function webapp(){
+        $domain = config('app.url');
+        return view('user.webapp', compact('domain'));
+    }
+
+    public function webapp_data(Request $request){
+        dd($request->all());
+        return 1;
+    }
+
     public function webhook(Request $request)
     {
         $update = Telegram::commandsHandler(true);
@@ -14,10 +24,12 @@ class TelegramController extends Controller
         $chatId = $request->input('message.chat.id');
 
         if ($message) {
-            Telegram::sendMessage([
-                'chat_id' => $chatId,
-                'text' => "Siz yozdingiz: " . $message
-            ]);
+            if ($message == '/start'){
+                Telegram::sendMessage([
+                    'chat_id' => $chatId,
+                    'text' => "Assalomu alaykum"
+                ]);
+            }
         }
 
         return response()->json(['status' => 'ok']);

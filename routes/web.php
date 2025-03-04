@@ -24,4 +24,6 @@ Route::prefix('user')->name('user.')->group(function() {
 });
 
 Route::get('/telegram/test', [TelegramController::class, 'test']);
+Route::get('/telegram/webapp', [TelegramController::class, 'webapp']);
+Route::get('/telegram/webapp_data', [TelegramController::class, 'webapp_data']);
 Route::post('/telegram/webhook', [TelegramController::class, 'webhook']);
