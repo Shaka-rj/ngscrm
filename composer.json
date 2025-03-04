@@ -9,6 +9,7 @@
         "php": "^8.2",
         "barryvdh/laravel-dompdf": "^3.1",
         "intervention/image-laravel": "^1.5",
+        "irazasyed/telegram-bot-sdk": "^3.15",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9"
     },

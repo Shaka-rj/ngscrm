@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\SpetsController;
@@ -21,3 +22,6 @@ Route::prefix('user')->name('user.')->group(function() {
     Route::post('spets/store', [SpetsController::class, 'store'])->name('spets.store');
     Route::get('spets/{id}', [SpetsController::class, 'show'])->name('spets.show');
 });
+
+Route::get('/telegram/test', [TelegramController::class, 'test']);
+Route::post('/telegram/webhook', [TelegramController::class, 'webhook']);

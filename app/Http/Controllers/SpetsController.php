@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Spets;
@@ -161,15 +162,26 @@ class SpetsController extends Controller
         
         $image = $this->image;
 
-        return response()->stream(function () use ($image) {
-            imagepng($image);
-            imagedestroy($image);
-        }, 200, [
-            'Content-Type' => 'image/png',
-            'Cache-Control' => 'no-cache, no-store, must-revalidate',
-            'Pragma' => 'no-cache',
-            'Expires' => '0',
-        ]);
+        $folder = 'public/spets'; 
+        $filename = 'spets_'. $id . '_' . time() . '.png';
+        $path = storage_path("app/$folder/$filename");
+        imagepng($image, $path);
+        imagedestroy($image);
+
+    
+        $url = Storage::url("$folder/$filename");
+
+        return response()->json(['url' => $url]);
+
+        // return response()->stream(function () use ($image) {
+        //     imagepng($image);
+        //     imagedestroy($image);
+        // }, 200, [
+        //     'Content-Type' => 'image/png',
+        //     'Cache-Control' => 'no-cache, no-store, must-revalidate',
+        //     'Pragma' => 'no-cache',
+        //     'Expires' => '0',
+        // ]);
     }
 
     public function create(){
