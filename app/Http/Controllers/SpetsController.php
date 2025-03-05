@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use Telegram\Bot\Laravel\Facades\Telegram;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Spets;
@@ -52,14 +53,19 @@ class SpetsController extends Controller
         $this->violet = imagecolorallocate($this->image, 18, 81, 98);
     }
 
-    protected function text($text, $x, $y, $fontSize = null, $color = null){
+    protected function text($text, $x, $y, $fontSize = null, $font = null){
         $fontSize = $fontSize ?? $this->fontSize;
-        $color = $color ?? $this->black;
+        $color = $this->black;
+        if ($font == 1){
+            $font = $this->fontb;
+        } else {
+            $font = $this->font;
+        }
 
-        imagettftext($this->image, $fontSize, 0, $x, $y, $color, $this->font, $text);
+        imagettftext($this->image, $fontSize, 0, $x, $y, $color, $font, $text);
     }
 
-    protected function centertext($text, $y,  $fontSize = null, $color = null){
+    protected function centertext($text, $y,  $fontSize = null){
         $fontSize = $fontSize ?? $this->fontSize;
         
         $bbox = imagettfbbox($fontSize, 0, $this->font, $text);
@@ -67,24 +73,24 @@ class SpetsController extends Controller
 
         $x = ($this->width - $textWidth) / 2;
 
-        $this->text($text, $x, $y, $fontSize, $color);
+        $this->text($text, $x, $y, $fontSize);
     }
 
-    protected function ceilcentertext($text, $x, $lenght, $y){
+    protected function ceilcentertext($text, $x, $lenght, $y, $font = null){
         $bbox = imagettfbbox($this->fontSize, 0, $this->font, $text);
         $textWidth = $bbox[2] - $bbox[0];
 
         
         $xc = ($lenght - $textWidth) / 2;
-        $this->text($text, $x+$xc, $y);
+        $this->text($text, $x+$xc, $y, null, $font);
     }
 
-    protected function ceilrighttext($text, $x, $lenght, $y){
+    protected function ceilrighttext($text, $x, $lenght, $y, $font = null){
         $bbox = imagettfbbox($this->fontSize, 0, $this->font, $text);
         $textWidth = $bbox[2] - $bbox[0];
 
         $xc = $lenght - $textWidth - 6;
-        $this->text($text, $x+$xc, $y);
+        $this->text($text, $x+$xc, $y, null, $font);
     }
 
     public function index(){
@@ -105,7 +111,7 @@ class SpetsController extends Controller
         $this->text("Xaridor: ".$spets['customer'], 900, 240);
 
         $texts = [
-            ["N", "Nomi", "Bazaviy narx", "Ustama", "Narx", "QQS", "QQS bilan narxi", "Soni", "Jami narxi"]
+            ["N", "Nomi", "Bazaviy narx", "Ustama", "Narx", "QQS", "QQS bilan\n  narxi", "Soni", "Jami narxi", "Yaroqlilik\n muddati"]
         ];
 
         $i = 0;
@@ -122,7 +128,8 @@ class SpetsController extends Controller
                     $v['product']['vat_percent'].'%',
                     number_format($v['product']['price_after_vat'], 2, '.', ' '),
                     $v['count'],
-                    number_format($v['summ'], 2, '.', ' ')
+                    number_format($v['summ'], 2, '.', ' '),
+                    $v['product']['expired_data']
                 ];
             else
             $texts[] = [
@@ -134,29 +141,41 @@ class SpetsController extends Controller
                 $v['product']['vat_percent2'].'%',
                 number_format($v['product']['price_after_vat2'], 2, '.', ' '),
                 $v['count'],
-                number_format($v['summ'], 2, '.', ' ')
+                number_format($v['summ'], 2, '.', ' '),
+                $v['product']['expired_data']
             ];
         }
 
-        $texts[] = ['', "Jami:", '', '', '', '', '', '', number_format($spets['summ'], 2, '.', ' ')];
+        $texts[] = ['', "Jami:", '', '', '', '', '', '', number_format($spets['summ'], 2, '.', ' '), ''];
 
-        $ceilxs = [50, 360, 200, 110, 200, 100, 200, 100, 260];
+        $ceilxs = [50, 320, 200, 110, 200, 100, 200, 100, 220, 140];
 
         $lasty = 300;
+        $text_count = count($texts) - 1;
         foreach($texts as $k => $v){
-            $lastx = 80;
+            $lastx = 60;
+            if ($k == 0){
+                $ceil_height = 80;
+                $font = 1;
+            } else {
+                $ceil_height = 56;
+                $font = null;
+                if ($text_count == $k) $font = 1;
+            }
+        
+
             foreach($v as $k2 => $v2){
-                imagerectangle($this->image, $lastx, $lasty, $lastx+$ceilxs[$k2], $lasty+56, $this->black);
+                imagerectangle($this->image, $lastx, $lasty, $lastx+$ceilxs[$k2], $lasty+$ceil_height, $this->black);
                 
                 if ($k == 0 or $k2 == 3 or $k2 == 5 or $k2 == 7)
-                    $this->ceilcentertext($v2, $lastx, $ceilxs[$k2], $lasty+36);
+                    $this->ceilcentertext($v2, $lastx, $ceilxs[$k2], $lasty+36, $font);
                 elseif ($k2 > 1)
-                    $this->ceilrighttext($v2, $lastx, $ceilxs[$k2], $lasty+36);
+                    $this->ceilrighttext($v2, $lastx, $ceilxs[$k2], $lasty+36, $font);
                 else
-                    $this->text($v2, $lastx+6, $lasty+36);
+                    $this->text($v2, $lastx+6, $lasty+36, null, $font);
                 $lastx += $ceilxs[$k2];
             }
-            $lasty += 56;
+            $lasty += $ceil_height;
             
         }
         
@@ -171,7 +190,12 @@ class SpetsController extends Controller
     
         $url = Storage::url("$folder/$filename");
 
-        return response()->json(['url' => $url]);
+        return $url;
+
+        Telegram::sendMessage([
+            'chat_id' => 320021926,
+            'text' => "Hello Sir"
+        ]);
 
         // return response()->stream(function () use ($image) {
         //     imagepng($image);
@@ -249,13 +273,14 @@ class SpetsController extends Controller
             }
         }
 
-        
+        $user_id = session('user_id');
 
         $spets = Spets::create([
-            'company' => $req['company'],
+            'company'  => $req['company'],
             'customer' => $req['customer'],
-            'summ' => $allsumm,
-            'details' => $details2
+            'summ'     => $allsumm,
+            'details'  => $details2,
+            'user_id'  => $user_id
         ]);
 
         return redirect()->route('user.spets.show', $spets->id)->with('success', 'Spets muvaffaqiyatli yaratildi!');

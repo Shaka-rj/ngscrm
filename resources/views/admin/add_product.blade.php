@@ -14,6 +14,7 @@
                 <th>Narx</th>
                 <th class="x2">QQS</th>
                 <th>Oxirgi narx</th>
+                <th>Muddati</th>
                 <th>Amal</th>
             </tr>
             <tr>
@@ -23,6 +24,7 @@
                 <td><input type="number" step="0.01" name="price" value="0" required></td>
                 <td class="x2"><input type="number" name="vat_percent" id="vat_percent" value="0" required></td>
                 <td><input type="number" step="0.01" name="price_after_vat" value="0" required></td>
+                <td><input type="text" name="expired_data" required></td>
                 <td><input type="submit" value="Yaratish"></td>
             </tr>
             <tr>

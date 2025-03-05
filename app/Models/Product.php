@@ -12,6 +12,6 @@ class Product extends Model
 
     protected $fillable = [
         'name', 'main_price', 'main_percent', 'price', 'vat_percent', 'price_after_vat',
-        'main_price2', 'main_percent2', 'price2', 'vat_percent2', 'price_after_vat2'
+        'main_price2', 'main_percent2', 'price2', 'vat_percent2', 'price_after_vat2', 'expired_data'
     ];
 }

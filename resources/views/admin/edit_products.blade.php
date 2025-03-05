@@ -15,6 +15,7 @@
                 <th>Narx</th>
                 <th class="x2">QQS</th>
                 <th>Oxirgi narx</th>
+                <th>Muddati<th>
                 <th>Amal</th>
             </tr>
             <tr>
@@ -24,6 +25,7 @@
                 <td><input type="number" step="0.01" name="price" value="{{ $product->price }}" required></td>
                 <td class="x2"><input type="number" name="vat_percent" id="vat_percent" value="{{ $product->vat_percent }}" required></td>
                 <td><input type="number" step="0.01" name="price_after_vat" value="{{ $product->price_after_vat }}" required></td>
+                <td><input type="text" name="expired_data" value="{{ $product->expired_data }}"></td>
                 <td><input type="submit" value="Saqlash"></td>
             </tr>
             <tr>

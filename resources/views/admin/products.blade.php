@@ -13,6 +13,7 @@
                 <th>Narx</th>
                 <th class="x2">QQS</th>
                 <th>Oxirgi narx</th>
+                <th>Muddati</th>
                 <th>Amal</th>
             </tr>
             @foreach ($products as $product)
@@ -23,6 +24,7 @@
                     <td>{{ number_format($product->price, 2, '.', ' ') }}</td>
                     <td>{{ $product->vat_percent }}</td>
                     <td>{{ number_format($product->price_after_vat, 2, '.', ' ') }}</td>
+                    <td>{{ $product->expired_data }}</td>
                     <td>
                         <button class="edit" data-id="{{ $product->id }}"><img src="{{ asset('img/icon/edit.svg') }}"></button>
                         <button class="del" data-id="{{ $product->id }}"><img src="{{ asset('img/icon/delete.svg') }}"></button>

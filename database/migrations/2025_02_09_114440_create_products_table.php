@@ -24,6 +24,7 @@ return new class extends Migration
             $table->decimal('price2', 10, 2);
             $table->integer('vat_percent2');
             $table->decimal('price_after_vat2', 10, 2);
+            $table->string('expired_data');
             $table->timestamps();
         });
     }
