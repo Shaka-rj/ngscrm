@@ -194,9 +194,9 @@ class SpetsController extends Controller
         $domain = config('app.url');
         
 
-        Telegram::sendPhoto([
+        Telegram::sendDocument([
             'chat_id' => 320021926,
-            'photo' =>  InputFile::create(storage_path("app/$folder/$filename")),
+            'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
         ]);
 
         return $domain.' - '.$url;
