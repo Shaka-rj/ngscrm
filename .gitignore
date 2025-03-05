@@ -22,3 +22,6 @@ yarn-error.log
 /.vscode
 /.zed
 git_push.bat
+.htaccess
+public/error_log
+

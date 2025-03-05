@@ -1,3 +1,4 @@
 *
 !.gitignore
-!spets/*
+!spets/
+spets/*
