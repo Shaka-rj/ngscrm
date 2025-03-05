@@ -196,7 +196,7 @@ class SpetsController extends Controller
 
         Telegram::sendPhoto([
             'chat_id' => 320021926,
-            'photo' => InputFile::create($$image, 'image.png'),
+            'photo' => InputFile::create($image, 'image.png'),
         ]);
 
         return $domain.' - '.$url;
