@@ -14,6 +14,7 @@ class TelegramController extends Controller
 
     public function webapp_data(Request $request){
         $req = $request->all();
+        dd($req);
         $user_id = $req['chat_id'];
 
         session(['user_id' => $user_id]);
