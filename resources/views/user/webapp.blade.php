@@ -8,7 +8,7 @@
 let webapp = window.Telegram.WebApp;
 let initData = webapp.initData;
 
-window.location.href = '{{ $domain }}/signin?' + initData;
+window.location.href = '{{ $domain }}/telegram/webapp_data?' + initData;
 console.log(webapp);
 </script>
 
