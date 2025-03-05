@@ -181,31 +181,34 @@ class SpetsController extends Controller
         
         $image = $this->image;
 
-        // $folder = 'public/spets'; 
-        // $filename = 'spets_'. $id . '_' . time() . '.png';
-        // $path = storage_path("app/$folder/$filename");
-        // imagepng($image, $path);
-        // imagedestroy($image);
+        $folder = 'public/spets'; 
+        $filename = 'spets_'. $id . '_' . time() . '.png';
+        $path = storage_path("app/$folder/$filename");
+        imagepng($image, $path);
+        imagedestroy($image);
 
     
-        // $url = Storage::url("$folder/$filename");
+        $url = Storage::url("$folder/$filename");
 
-        // return $url;
+        $domain = config('app.url');
+        
 
-        // Telegram::sendMessage([
-        //     'chat_id' => 320021926,
-        //     'text' => "Hello Sir"
-        // ]);
-
-        return response()->stream(function () use ($image) {
-            imagepng($image);
-            imagedestroy($image);
-        }, 200, [
-            'Content-Type' => 'image/png',
-            'Cache-Control' => 'no-cache, no-store, must-revalidate',
-            'Pragma' => 'no-cache',
-            'Expires' => '0',
+        Telegram::sendPhoto([
+            'chat_id' => 320021926,
+            'photo' => $domain.'/'.$url
         ]);
+
+        return $domain.' - '.$url;
+
+        // return response()->stream(function () use ($image) {
+        //     imagepng($image);
+        //     imagedestroy($image);
+        // }, 200, [
+        //     'Content-Type' => 'image/png',
+        //     'Cache-Control' => 'no-cache, no-store, must-revalidate',
+        //     'Pragma' => 'no-cache',
+        //     'Expires' => '0',
+        // ]);
     }
 
     public function create(){
