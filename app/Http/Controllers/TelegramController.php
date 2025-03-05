@@ -19,7 +19,7 @@ class TelegramController extends Controller
 
         session(['user_id' => $user_id]);
 
-        return 1;
+        return redirect()->route('user.spets.create');
     }
 
     public function webhook(Request $request)
