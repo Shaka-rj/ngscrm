@@ -24,4 +24,4 @@ yarn-error.log
 git_push.bat
 .htaccess
 public/error_log
-
+!storage/app/public/spets/.gitkeep
