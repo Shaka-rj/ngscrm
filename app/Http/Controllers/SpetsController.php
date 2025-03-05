@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Telegram\Bot\Laravel\Facades\Telegram;
+use Telegram\Bot\FileUpload\InputFile;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Spets;
@@ -195,7 +196,7 @@ class SpetsController extends Controller
 
         Telegram::sendPhoto([
             'chat_id' => 320021926,
-            'photo' => $domain.'/'.$url
+            'photo' => InputFile::create($$image, 'image.png'),
         ]);
 
         return $domain.' - '.$url;
