@@ -195,7 +195,7 @@ class SpetsController extends Controller
         
 
         Telegram::sendDocument([
-            'chat_id' => 320021926,
+            'chat_id' => session('user_id'),
             'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
         ]);
 
@@ -213,6 +213,8 @@ class SpetsController extends Controller
     }
 
     public function create(){
+        session()->forget('user_id');
+        dd(session('user_id'));
         $products = Product::all();
         
         return view('user.spets_form', compact('products'));
