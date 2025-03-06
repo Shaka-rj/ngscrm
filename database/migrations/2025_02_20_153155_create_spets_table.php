@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('spets', function (Blueprint $table) {
             $table->id();
             $table->integer('custom_id');
-            $table->integer('user_id');
+            $table->bigInteger('user_id');
             $table->year('year'); 
             $table->string('company');
             $table->string('customer');
