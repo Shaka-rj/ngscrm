@@ -42,8 +42,8 @@
             
             <div class="company">
                 <select name="company">
-                    <option value="PHARMED UNION MCHJ">PHARMED UNION</option>
-                    <option value="BIONYX MCHJ">BIONYX</option>
+                    <option value="2">{{ config('companies.2.name') }}</option>
+                    <option value="1">{{ config('companies.1.name') }}</option>
                 </select> 
             </div>
             

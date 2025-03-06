@@ -108,7 +108,10 @@ class SpetsController extends Controller
         $this->centertext($date, 130, 24);
         $this->centertext("Spetsfikatsiya", 80, 24);
         
-        $this->text("Sotuvchi: ".$spets['company'], 80, 240);
+
+        $company_id = $spets['company'];
+
+        $this->text("Sotuvchi: ".config('companies.'.$company_id.'.full_name'), 80, 240);
         $this->text("Xaridor: ".$spets['customer'], 900, 240);
 
         $texts = [
@@ -179,19 +182,17 @@ class SpetsController extends Controller
             $lasty += $ceil_height;
             
         }
+
+        $logo = imagecreatefrompng(public_path(config('companies.'.$company_id.'.logo_path')));
+        imagecopy($this->image, $logo, 80, 24, 0, 0, 300, 150);
         
         $image = $this->image;
 
         $folder = 'public/spets'; 
-        $filename = 'spets_'. $id . '_' . time() . '.png';
+        $filename = date('Y').'-'. $id . '.png';
         $path = storage_path("app/$folder/$filename");
         imagepng($image, $path);
         imagedestroy($image);
-
-    
-        $url = Storage::url("$folder/$filename");
-
-        $domain = config('app.url');
         
 
         Telegram::sendDocument([
@@ -199,7 +200,7 @@ class SpetsController extends Controller
             'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
         ]);
 
-        return $domain.' - '.$url;
+        return view('user.closewebapp');
 
         // return response()->stream(function () use ($image) {
         //     imagepng($image);
@@ -277,7 +278,8 @@ class SpetsController extends Controller
             }
         }
 
-        $user_id = session('user_id');
+        
+        $user_id = is_null(session('user_id')) ? 1 : session('user_id');
 
         $spets = Spets::create([
             'company'  => $req['company'],
