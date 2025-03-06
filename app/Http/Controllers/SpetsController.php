@@ -213,6 +213,9 @@ class SpetsController extends Controller
     }
 
     public function create(){
+
+
+        //scdcs
         dd(session('user_id'));
         $products = Product::all();
         
