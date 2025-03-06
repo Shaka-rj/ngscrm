@@ -213,8 +213,7 @@ class SpetsController extends Controller
     }
 
     public function create(){
-        //session()->forget('user_id');
-        dd(session('user_id'));
+        
         $products = Product::all();
         
         return view('user.spets_form', compact('products'));
