@@ -151,6 +151,7 @@ class SpetsController extends Controller
         }
 
         $texts[] = ['', "Jami:", '', '', '', '', '', '', number_format($spets['summ'], 2, '.', ' '), ''];
+        $texts[] = ['', "Jami 50%:", '', '', '', '', '', '', number_format($spets['summ']/2, 2, '.', ' '), ''];
 
         $ceilxs = [50, 320, 200, 110, 200, 100, 200, 100, 220, 140];
 
