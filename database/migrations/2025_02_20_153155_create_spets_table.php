@@ -18,7 +18,7 @@ return new class extends Migration
             $table->year('year'); 
             $table->string('company');
             $table->string('customer');
-            $table->decimal('summ', 11, 2);
+            $table->decimal('summ', 20, 2);
             $table->json('details');
             $table->timestamps();
         });

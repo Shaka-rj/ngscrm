@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{{ asset('css/spets.css?v=1.0.1') }}">
+    <link rel="stylesheet" href="{{ asset('css/spets.css?v=1.0.2') }}">
 </head>
 <body>
     <div class="spets-container">
@@ -38,6 +38,14 @@
             
             <div class="all-summ">
                 <span id="jami">0.00</span>
+            </div>
+
+            <div class="after_pay">
+                <h4>Oldindan to'lov</h4>
+                <input type="radio" id="100p" name="after_pay" value="100" checked>
+                <label for="100p">100%</label><br>
+                <input type="radio" id="50p" name="after_pay" value="50">
+                <label for="50p">50%</label><br>
             </div>
             
             <div class="company">
@@ -90,7 +98,6 @@
                 
                 document.getElementById('m' + i).innerHTML = narxi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
             }
-            
             
             document.getElementById('jami').innerHTML = summa.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
         }

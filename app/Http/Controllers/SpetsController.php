@@ -151,7 +151,9 @@ class SpetsController extends Controller
         }
 
         $texts[] = ['', "Jami:", '', '', '', '', '', '', number_format($spets['summ'], 2, '.', ' '), ''];
-        $texts[] = ['', "Jami 50%:", '', '', '', '', '', '', number_format($spets['summ']/2, 2, '.', ' '), ''];
+
+        if ($spets['after_pay'] == 50)
+            $texts[] = ['', "50% oldindan to'lov:", '', '', '', '', '', '', number_format($spets['summ']/2, 2, '.', ' '), ''];
 
         $ceilxs = [50, 320, 200, 110, 200, 100, 200, 100, 220, 140];
 
@@ -189,19 +191,21 @@ class SpetsController extends Controller
         
         $image = $this->image;
 
+
         $folder = 'public/spets'; 
         $filename = date('Y').'-'. $id . '.png';
         $path = storage_path("app/$folder/$filename");
         imagepng($image, $path);
         imagedestroy($image);
         
-
+        
         Telegram::sendDocument([
             'chat_id' => session('user_id'),
             'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
         ]);
 
         return view('user.closewebapp');
+
 
         // return response()->stream(function () use ($image) {
         //     imagepng($image);
@@ -283,11 +287,12 @@ class SpetsController extends Controller
         $user_id = is_null(session('user_id')) ? 1 : session('user_id');
 
         $spets = Spets::create([
-            'company'  => $req['company'],
-            'customer' => $req['customer'],
-            'summ'     => $allsumm,
-            'details'  => $details2,
-            'user_id'  => $user_id
+            'company'   => $req['company'],
+            'customer'  => $req['customer'],
+            'summ'      => $allsumm,
+            'details'   => $details2,
+            'user_id'   => $user_id,
+            'after_pay' => intval($req['after_pay'])
         ]);
 
         return redirect()->route('user.spets.show', $spets->id)->with('success', 'Spets muvaffaqiyatli yaratildi!');

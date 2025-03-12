@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Spets extends Model
 {
-    protected $fillable = ['company', 'customer', 'summ', 'details', 'custom_id', 'year', 'user_id'];
+    protected $fillable = ['company', 'customer', 'summ', 'details', 'custom_id', 'year', 'user_id', 'after_pay'];
 
     protected $casts = [
         'details' => 'array', // JSON ustunni array sifatida ishlatish

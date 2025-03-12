@@ -117,3 +117,14 @@ html {
     border: 1px solid var(--blue2);
     border-radius: 14px;
 }
+
+.spets-container .after_pay h4 {
+    margin: 10px 0 0 0
+}
+.spets-container .after_pay {
+    margin-bottom: 20px;
+}
+.spets-container .after_pay input {
+    transform: scale(1.5);
+    margin-right: 5px;
+}
