@@ -2,6 +2,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.2') }}">
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
 <body>
     <div class="header">
@@ -91,5 +92,11 @@
             </div>
         </div>
     </div>
+
+    <script>
+        //telegram backbutton
+        let tg = window.Telegram.WebApp;
+        tg.BackButton.hide();
+    </script>
 </body>
 </html>

@@ -2,6 +2,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="{{ asset('css/spets.css?v=1.0.2') }}">
+
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
 <body>
     <div class="spets-container">
@@ -103,6 +105,13 @@
 
             document.getElementById('jami').innerHTML = summa.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');         
         }
+
+        //telegram backbutton
+        let tg = window.Telegram.WebApp;
+        tg.BackButton.show();
+        tg.onEvent('backButtonClicked', () => {
+            window.location.href = "{{ route('user.main.index') }}";
+        });
     </script>
 </body>
 </html>
