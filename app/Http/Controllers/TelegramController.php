@@ -19,7 +19,7 @@ class TelegramController extends Controller
 
         session(['user_id' => $user_id]);
 
-        return redirect()->route('user.main');
+        return redirect()->route('user.main.index');
     }
 
     public function webhook(Request $request)
