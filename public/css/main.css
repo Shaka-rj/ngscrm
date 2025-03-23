@@ -1,0 +1,153 @@
+:root {
+    --blue: rgb(36 172 212);
+    --blue2: rgb(20 84 100);
+    --blue3: rgb(222 236 255);
+    --green: rgb(56, 240, 108);
+}
+
+
+html {
+    font-family: ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    font-size: 18px;
+}
+
+body {
+    max-width: 800px;
+    margin: auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 0px;
+}
+.header h3, .header p {
+    margin: 0;
+}
+
+.b {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.b a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+.b1 img, .b2 img, .b3 img, .b4 img {
+    width: 100%;
+}
+
+.b .image {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.b1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.b2 {
+    width: 49%;
+    padding: 6px;
+}
+
+.b3 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b4 {
+    width: 49%;
+    padding: 6px;
+}
+
+
+.popup {
+    width: 90%;
+    border: 1px solid var(--blue2);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.popup button {
+    width: 90%;
+    font-size: 18px;
+    background-color: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+}
+
+
+.modal {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    border-radius: 20px 20px 0 0;
+    background-color: #fafafa;
+}
+
+.modal .top {
+    display: flex;    
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+    background-color: var(--blue);
+    border-radius: 20px 20px 0 0;
+}
+
+.modal .top button {
+    margin-right: 20px;
+    border-radius: 50vh;
+    border: 1px solid #aaa;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    color: #000;
+}
+.modal .top span {
+    margin-left: 10px;
+}
+
+.registration {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.registration input, .registration label {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+}
+
+.registration input {
+    border-radius: 50vh;
+    border: 1px solid var(--blue2);
+    margin: 6px;
+    padding: 6px 10px;;
+}
+
+.registration input[type="submit"]{
+    background-color: var(--blue);
+    color: #fff;
+    margin-top: 20px;
+}
+
+.registration label {
+    margin-top: 20px;
+    margin-left: 20px;
+}

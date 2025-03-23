@@ -1,0 +1,65 @@
+.list {
+    text-align: center;
+}
+
+.list .item, .list .item2 {
+    border: 1px solid #000;
+    margin: 4px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.list .item {
+    display: none;
+}
+
+.list .listbtn {
+    width: 90%;
+    font-size: 18px;
+    background-color: var(--blue);
+    color: #fff;
+    border: 1px solid var(--blue2);
+    border-radius: 50vh;
+    height: 40px;
+    margin: 10px;
+}
+
+.list .add {
+    background-color: rgb(0 200 0);
+}
+
+.list .elm {
+    font-weight: bold;
+    margin: 10px;
+}
+.list .name {
+    color: var(--blue);
+    font-size: 22px;
+}
+.list .name2 {
+    color: var(--blue);
+    font-size: 20px;
+}
+
+.list .item input {
+    display: block;
+    font-size: 18px;
+    margin: 10px auto;
+    border-radius: 50vh;
+    border: 1px solid var(--blue2);
+    width: 90%;
+    padding: 8px 10px;
+    text-align: center;
+}
+.list .item input[type=submit]{
+    color: #fff;
+}
+
+.list .item select {
+    font-size: 18px;
+    width: 90%;
+    padding: 8px 10px;
+    text-align: center;
+    margin: 10px;
+    border-radius: 50vh;
+}
