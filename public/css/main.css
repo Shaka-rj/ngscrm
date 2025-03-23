@@ -35,6 +35,16 @@ body {
     text-decoration: none;
     color: #000;
     font-size: 14px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out;
+    -webkit-tap-highlight-color: transparent; 
+}
+
+.b a:active {
+    transform: scale(0.95);
 }
 
 .b1 img, .b2 img, .b3 img, .b4 img {
