@@ -6,9 +6,10 @@
 <body>
     <div class="header">
         <h3>BIONYX</h3>
-        <p>Rajabov Shamshod</p>
+        <p></p>
     </div>
     <div class="b">
+        <!--
         <div class="b1">
             <div class="b2">
                 <div class="b3">
@@ -71,6 +72,7 @@
                 </a>
             </div>
         </div>
+        -->
         
         <div class="b1">
             <div class="b2">
