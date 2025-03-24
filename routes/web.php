@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\SpetsController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Middleware\UserValid;
 
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,9 @@ Route::prefix('admin')
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('products', ProductController::class);
     Route::get('/products/{product}/delete', [ProductController::class, 'destroy'])->name('admin.products.delete');
+
+    Route::get('users', [AdminUserController::class, 'index'])->name('admin.user.list');
+    Route::get('users/requests', [AdminUserController::class, 'requests'])->name('admin.user.requests');
 
 });
 

@@ -33,6 +33,7 @@ class TelegramController extends Controller
             $user = User::where('chat_id', $chat_id)->first();
 
             if (!$user or $user['role'] == 1) {
+                //return redirect()->route('user.main.index');
                 return redirect()->route('registration');
             }
 
