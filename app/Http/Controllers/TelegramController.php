@@ -15,14 +15,12 @@ class TelegramController extends Controller
     public function webapp_data(Request $request){
         $req = $request->all();
 
-        dd($req);
-
         $user = json_decode($req['user'], true);
         $user_id = $user['id'];
 
         session(['user_id' => $user_id]);
 
-        return redirect()->route('user.main.index');
+        //return redirect()->route('user.main.index');
 
 
         $bot_token = env('TELEGRAM_BOT_TOKEN');
@@ -37,21 +35,9 @@ class TelegramController extends Controller
         if(strcmp($hash, $check_hash) === 0){
             $tg_user = json_decode($req['user'], true);
             $chat_id = $tg_user['id'];
-            $_SESSION['chat_id'] = $chat_id;
-
-            $User = new User();
-            $user = $User->read($chat_id, 'chat_id');
-            
-            if ($user !== null){
-                $_SESSION['is_user'] = true;   
-                $_SESSION['user_id'] = $user['id'];
-                $User->update_token($user['id']);
-                header('Location: olympics');
-            } else {
-                header('Location: signup');
-            }
+            dd('okokok');
         } else {
-            print("Ilovani yopib qayta kiring");
+            dd('xatolik');
         }
     }
 
