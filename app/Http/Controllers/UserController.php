@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Region;
 
 class UserController extends Controller
 {
@@ -23,14 +24,30 @@ class UserController extends Controller
             ];
         }
 
-        return view('user.registration', compact('user'));
+        $regions = Region::all();
+
+        return view('user.registration', compact('user', 'regions'));
     }
 
     public function registration_store(Request $request){
-        // $validated = $request->validate([
+        $request->validate([
+            'firstname' => 'required|string|min:2|max:100',
+            'lastname' => 'required|string|min:2|max:100',
+            'region' => 'required|min:1'
+        ]);
 
-        // ]);
+        $existingUser = User::where('chat_id', session('chat_id'))->first();
 
-        dd($request->all());
+        if (!$existingUser) {
+            User::create([
+                'name' => $request->firstname,
+                'lastname' => $request->lastname,
+                'chat_id' => session('chat_id'),
+                'region_id' => $request->region,
+                'role' => 1
+            ]);
+        }
+
+        return redirect()->route('registration');
     }
 }
