@@ -200,7 +200,7 @@ class SpetsController extends Controller
         
         
         Telegram::sendDocument([
-            'chat_id' => session('user_id'),
+            'chat_id' => session('chat_id'),
             'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
         ]);
 
