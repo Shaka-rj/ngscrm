@@ -9,4 +9,30 @@ class Region extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    // Region -> User
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+
+    // Region -> District
+    public function districts()
+    {
+        return $this->hasMany(District::class);
+    }
+
+    // Region -> Object
+    public function objects(){
+        return $this->hasMany(UserObject::class);
+    }
+
+    // Region -> Doctor
+    public function doctors(){
+        return $this->hasMany(Doctor::class);
+    }
+
+    // Region -> Pharmacy
+    public function pharmacies(){
+        return $this->hasMany(Pharmacy::class);
+    }
 }

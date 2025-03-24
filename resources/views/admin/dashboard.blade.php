@@ -14,7 +14,7 @@
             </div>
         </a>
         
-        <a href="admin/products">
+        <a href="{{ route('admin.products.index') }}">
             <div class="item">
                 <img src="{{ asset('img/icon/medicine.svg') }}" class="svg-color"><br>
                 <span>Mahsulotlar</span>
