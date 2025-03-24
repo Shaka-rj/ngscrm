@@ -16,9 +16,6 @@ class TelegramController extends Controller
     public function webapp_data(Request $request){
         $req = $request->all();
 
-        //return redirect()->route('user.main.index');
-
-
         $bot_token = env('TELEGRAM_BOT_TOKEN');
 
         $check_hash = $req['hash'];
@@ -32,7 +29,7 @@ class TelegramController extends Controller
             $user = json_decode($req['user'], true);
             $chat_id = $user['id'];
             session(['chat_id' => $chat_id]);
-
+            dd($user);
             $user = User::where('chat_id', $chat_id)->first();
 
             if (!$user or $user['role'] == 1) {
