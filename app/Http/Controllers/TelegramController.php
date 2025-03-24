@@ -38,6 +38,8 @@ class TelegramController extends Controller
                 return redirect()->route('registration')->with('error', 'Foydalanuvchi topilmadi. Ro‘yxatdan o‘ting.');
             }
 
+            dd($user);
+
             Auth::login($user);
 
             return redirect()->route('dashboard')->with('success', 'Tizimga kirdingiz!');
