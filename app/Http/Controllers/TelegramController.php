@@ -29,7 +29,7 @@ class TelegramController extends Controller
             $user = json_decode($req['user'], true);
             $chat_id = $user['id'];
             session(['chat_id' => $chat_id]);
-            dd(session('chat_id'));
+
             $user = User::where('chat_id', $chat_id)->first();
 
             if (!$user or $user['role'] == 1) {
