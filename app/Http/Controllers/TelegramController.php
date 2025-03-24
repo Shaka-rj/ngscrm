@@ -35,8 +35,8 @@ class TelegramController extends Controller
 
             $user = User::where('chat_id', $chat_id)->first();
 
-            if (!$user) {
-                return redirect()->route('registration')->with('error', 'Foydalanuvchi topilmadi. Ro‘yxatdan o‘ting.');
+            if (!$user or $user['role'] == 1) {
+                return redirect()->route('registration');
             }
 
             dd($user);
