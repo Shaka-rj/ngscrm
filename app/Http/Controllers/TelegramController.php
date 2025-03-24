@@ -20,7 +20,7 @@ class TelegramController extends Controller
 
         $bot_token = env('TELEGRAM_BOT_TOKEN');
 
-        $check_hash = $req['hash'].'-';
+        $check_hash = $req['hash'];
 
         $data_check_string = "auth_date=$req[auth_date]\nquery_id=$req[query_id]\nsignature=$req[signature]\nuser=$req[user]";
 
