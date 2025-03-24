@@ -15,11 +15,6 @@ class TelegramController extends Controller
     public function webapp_data(Request $request){
         $req = $request->all();
 
-        $user = json_decode($req['user'], true);
-        $user_id = $user['id'];
-
-        session(['user_id' => $user_id]);
-
         //return redirect()->route('user.main.index');
 
 
@@ -33,11 +28,21 @@ class TelegramController extends Controller
         $hash = bin2hex(hash_hmac('sha256', $data_check_string, $secret_key, true) );
 
         if(strcmp($hash, $check_hash) === 0){
-            $tg_user = json_decode($req['user'], true);
-            $chat_id = $tg_user['id'];
-            dd('okokok');
+            $user = json_decode($req['user'], true);
+            $chat_id = $user['id'];
+            session(['chat_id' => $chat_id]);
+
+            $user = User::where('chat_id', $chat_id)->first();
+
+            if (!$user) {
+                return redirect()->route('registration')->with('error', 'Foydalanuvchi topilmadi. Ro‘yxatdan o‘ting.');
+            }
+
+            Auth::login($user);
+
+            return redirect()->route('dashboard')->with('success', 'Tizimga kirdingiz!');
         } else {
-            dd('xatolik');
+            exit('Ilovani yopib qayta kiring');
         }
     }
 
