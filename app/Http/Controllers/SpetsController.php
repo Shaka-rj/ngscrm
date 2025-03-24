@@ -203,6 +203,7 @@ class SpetsController extends Controller
             'chat_id' => session('chat_id'),
             'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
         ]);
+        
 
         return view('user.closewebapp');
 
