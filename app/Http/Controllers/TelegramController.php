@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Telegram\Bot\Laravel\Facades\Telegram;
+use App\Models\User;
 
 class TelegramController extends Controller
 {
