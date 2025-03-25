@@ -19,10 +19,14 @@ class User extends Authenticatable
      */
     protected $fillable = ['name', 'lastname', 'chat_id', 'region_id', 'role', 'additional'];
 
+    const ROLE_NEWUSER = 1;
+    const ROLE_AGENT = 2;
+    const ROLE_MANAGER = 3;
+    const ROLE_ADMIN = 4;
 
     public function isNewUser()
     {
-        return $this->role == 1;
+        return $this->role == self::ROLE_NEWUSER;
     }
 
     public function isAgent()

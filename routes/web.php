@@ -22,8 +22,12 @@ Route::prefix('admin')
     Route::resource('products', ProductController::class);
     Route::get('/products/{product}/delete', [ProductController::class, 'destroy'])->name('admin.products.delete');
 
-    Route::get('users', [AdminUserController::class, 'index'])->name('admin.user.list');
-    Route::get('users/requests', [AdminUserController::class, 'requests'])->name('admin.user.requests');
+    Route::get('users', [AdminUserController::class, 'index'])->name('user.list');
+    Route::get('users/requests', [AdminUserController::class, 'requests'])->name('user.requests');
+    Route::get('users/requests/0/{id}', [AdminUserController::class, 'cancel_user']);
+    Route::get('users/requests/2/{id}', [AdminUserController::class, 'confirm_agent']);
+    Route::get('users/requests/3/{id}', [AdminUserController::class, 'confirm_manager_regions']);
+    Route::post('users/requests/3/{id}', [AdminUserController::class, 'confirm_manager'])->name('user.confim.manager');
 
 });
 

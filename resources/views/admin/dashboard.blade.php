@@ -7,7 +7,7 @@
 
 <body>
     <div class="nav">
-        <a href="#">
+        <a href="{{ route('admin.user.list') }}">
             <div class="item">
                 <img src="{{ asset('img/icon/users.svg') }}" class="svg-color"><br>
                 <span>Hodimlar</span>

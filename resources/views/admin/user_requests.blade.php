@@ -19,6 +19,7 @@
         <div class="content">
             <div class="job_request" id="job_request">
             </div>
+            @if ($type == 1)
             @foreach ($users as $user)
                 <div class="requests">
                     <div class="name" id="{{ $user->id }}">
@@ -33,57 +34,22 @@
                     </div>
                 </div>
             @endforeach
-            <div class="requests">
-                <div class="name" id="1">
-                    Rajabov Shamshod
-                </div>
-                <div class="region">
-                    Qashqadaryo
-                </div>
-                <div class="action">
-                    <button data-userid="1" data-type="1"  class="blue"><img src="{{ asset('img/icon/check.svg') }}"></button>
-                    <button data-userid="1" data-type="0" class="red"><img src="{{ asset('img/icon/delete.svg') }}"></button>
-                </div>
-            </div>
-            
-            <div class="requests">
-                <div class="name" id="2">
-                    Turayev Shoxrux
-                </div>
-                <div class="region">
-                    Qashqadaryo
-                </div>
-                <div class="action">
-                    <button data-userid="2" data-type="1"  class="blue"><img src="icons/check.svg"></button>
-                    <button data-userid="2" data-type="0" class="red"><img src="icons/delete.svg"></button>
-                </div>
-            </div>
-            
+            @elseif ($type == 2)
+            <h3>{{ $user->name }}ni qaysi hududlarga menejer qilmoqchisiz?</h3>
             <div class="selectregion">
-                <form method="post">
-                    <div class="checkbox">
-                        <input type="checkbox" name="1" value="1" id="ch1">
-                        <label for="ch1">Toshkent</label>
-                    </div>
-                    
-                    <div class="checkbox">
-                        <input type="checkbox" name="1" value="1" id="ch1">
-                        <label for="ch1">Andijon</label>
-                    </div>
-                    
-                    <div class="checkbox">
-                        <input type="checkbox" name="1" value="1" id="ch1">
-                        <label for="ch1">Farg'ona</label>
-                    </div>
-                    
-                    <div class="checkbox">
-                        <input type="checkbox" name="1" value="1" id="ch1">
-                        <label for="ch1">Buxoro</label>
-                    </div>
+                <form method="post" action="{{ route('admin.user.confim.manager', ['id' => $user->id]) }}">
+                    @csrf
+                    @foreach ($regions as $region)
+                        <div class="checkbox">
+                            <input type="checkbox" name="regions[]" value="{{ $region->id }}" id="ch{{ $region->id }}">
+                            <label for="ch{{ $region->id }}">{{ $region->name }}</label>
+                        </div>
+                    @endforeach
                     
                     <input type="submit" name="submit" value="Saqlash">
                 </form>
             </div>
+            @endif
         </div>
     </div>
     <script>
@@ -111,8 +77,8 @@
                             <div class="type" id="job">
                                 <button onclick="hide()">x</button><br>
                                 <b>${name}</b>ni qaysi kasbga kiritmoqchisiz?<br>
-                                <a href="#">Menejer</a>
-                                <a href="#">Tibbiy vakil</a>
+                                <a href="requests/3/${userid}">Menejer</a>
+                                <a href="requests/2/${userid}">Tibbiy vakil</a>
                             </div>
                         `);
                     $("#job").slideDown("fast");
@@ -129,7 +95,7 @@
                         <div class="cancel" id="jobc">
                             <button onclick="hide()">x</button><br>
                             <b>${name}</b>ni rostan bekor qilmoqchimisiz?<br>
-                            <a href="#">Xa</a>
+                            <a href="requests/0/${userid}">Xa</a>
                         </div>
                         `);
                     $("#jobc").slideDown("fast");
