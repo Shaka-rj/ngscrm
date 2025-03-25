@@ -33,15 +33,11 @@ class TelegramController extends Controller
             $user = User::where('chat_id', $chat_id)->first();
 
             if (!$user or $user['role'] == 1) {
-                return redirect()->route('user.main.index');
-                //return redirect()->route('registration');
+                return redirect()->route('registration');
             }
 
-            dd($user);
-
             Auth::login($user);
-
-            return redirect()->route('dashboard')->with('success', 'Tizimga kirdingiz!');
+            return redirect()->route('user.main.index');
         } else {
             exit('Ilovani yopib qayta kiring');
         }
