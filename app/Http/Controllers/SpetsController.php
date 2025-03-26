@@ -167,7 +167,8 @@ class SpetsController extends Controller
             } else {
                 $ceil_height = 56;
                 $font = null;
-                if ($text_count == $k or $text_count-1 == $k) $font = 1;
+                if ($text_count == $k) $font = 1;
+                if ($text_count-1 == $k and $spets['after_pay'] == 50) $font = 1;
             }
         
 
