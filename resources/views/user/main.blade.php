@@ -62,8 +62,8 @@
                 </div>
             </div>
             
-            <!--
             <div class="b2">
+                <!--
                 <a href="#">
                     <div class="image">
                         <img src="{{ asset('img/icon/location.png')}}">
@@ -72,8 +72,9 @@
                         Lokatsiya
                     </div>
                 </a>
+                -->
             </div>
-            -->
+
         </div>
         
         <div class="b1">
