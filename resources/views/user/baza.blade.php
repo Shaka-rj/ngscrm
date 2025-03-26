@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/baza.css?v=1.0.0') }}">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
 <body>
     <div class="header">
