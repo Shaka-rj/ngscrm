@@ -128,3 +128,7 @@ html {
     transform: scale(1.5);
     margin-right: 5px;
 }
+
+form hr {
+    margin: 0;
+}

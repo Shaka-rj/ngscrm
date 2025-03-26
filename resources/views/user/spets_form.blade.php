@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{{ asset('css/spets.css?v=1.0.2') }}">
+    <link rel="stylesheet" href="{{ asset('css/spets.css?v=1.0.3') }}">
 
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
