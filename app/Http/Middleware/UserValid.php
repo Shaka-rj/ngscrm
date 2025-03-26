@@ -16,7 +16,7 @@ class UserValid
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->role === 2) {
+        if (auth()->check() && (auth()->user()->role === 2 || auth()->user()->role === 3)) {
             return $next($request);
         }
 
