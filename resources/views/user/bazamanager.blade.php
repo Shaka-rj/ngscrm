@@ -2,7 +2,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.0') }}">
-    <link rel="stylesheet" href="{{ asset('css/baza.css?v=1.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('css/baza.css?v=1.0.1') }}">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
@@ -17,11 +17,16 @@
     </div>
     @endif
     <br>
-    
+
     @if ($page == "selectuser")
     <div class="list">
-        @foreach ($users as $user)
-            <a href="{{ route('user.baza.'.$type, ['id' => $user->id]) }}" class="listbtn lista" id="addt">{{ $user->name }} {{ $user->lastname }}</a>
+        @foreach ($users as $region)
+            <div class="item2">
+                <div class="elm name">{{ $region->name }}</div> 
+                @foreach ($region->users as $user)
+                <a href="{{ route('user.baza.'.$type, ['id' => $user->id]) }}" class="listbtn lista" id="addt">{{ $user->name }} {{ $user->lastname }}</a>
+                @endforeach
+            </div>
         @endforeach
     </div>
 

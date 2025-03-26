@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Region;
 use App\Models\User;
 use App\Models\District;
 use App\Models\UserObject;
@@ -27,12 +28,18 @@ class BazaController extends Controller
         if ($this->role == User::ROLE_MANAGER)
         {
             $regionIds = json_decode($this->user->additional, true);
-            $this->users = User::whereIn('region_id', $regionIds)->orderBy('name', 'asc')->get();
+
+            $this->users = Region::whereIn('id', $regionIds)
+                    ->with(['users' => function ($query) {
+                        $query->where('role', User::ROLE_AGENT)->orderBy('name', 'asc');
+                    }])
+                    ->orderBy('name', 'asc')->get();
         }
 
     }
 
     public function district(string $id = null){
+
         if ($this->role == User::ROLE_AGENT)
             return view('user.baza', [
                 'pagename' => 'Tumanlar',
@@ -137,7 +144,7 @@ class BazaController extends Controller
                 return view('user.bazamanager', [
                     'pagename' => "Shifokorlarini ko'rmoqchi bo'lgan agentni tanlang",
                     'page'     => 'selectuser',
-                    'type'     => 'object',
+                    'type'     => 'doctor',
                     'users'    => $this->users
                 ]);
             else
