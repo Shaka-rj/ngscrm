@@ -44,13 +44,13 @@ Route::prefix('user')
 
     Route::get('main', [MainController::class, 'index'])->name('main.index');
 
-    Route::get('baza/district', [BazaController::class, 'district'])->name('baza.district');
+    Route::get('baza/district/{id?}', [BazaController::class, 'district'])->name('baza.district');
     Route::post('baza/district/add', [BazaController::class, 'district_add'])->name('baza.district_add');
-    Route::get('baza/object', [BazaController::class, 'userobject'])->name('baza.object');
+    Route::get('baza/object/{id?}', [BazaController::class, 'userobject'])->name('baza.object');
     Route::post('baza/object/add', [BazaController::class, 'userobject_add'])->name('baza.object_add');
-    Route::get('baza/doctor', [BazaController::class, 'doctor'])->name('baza.doctor');
+    Route::get('baza/doctor/{id?}', [BazaController::class, 'doctor'])->name('baza.doctor');
     Route::post('baza/doctor/add', [BazaController::class, 'doctor_add'])->name('baza.doctor_add');
-    Route::get('baza/pharmacy', [BazaController::class, 'pharmacy'])->name('baza.pharmacy');
+    Route::get('baza/pharmacy/{id?}', [BazaController::class, 'pharmacy'])->name('baza.pharmacy');
     Route::post('baza/pharmacy/add', [BazaController::class, 'pharmacy_add'])->name('baza.pharmacy_add');
 });
 

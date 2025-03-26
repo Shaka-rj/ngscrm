@@ -14,18 +14,45 @@ class BazaController extends Controller
 {
     public $user_id;
     public $user;
+    public $role;
+
+    // for manager
+    public $users;
 
     public function __construct(){
         $this->user_id = auth()->user()->id;
         $this->user = User::find($this->user_id);
+        $this->role = $this->user->role;
+
+        if ($this->role == User::ROLE_MANAGER)
+        {
+            $regionIds = json_decode($this->user->additional, true);
+            $this->users = User::whereIn('region_id', $regionIds)->orderBy('name', 'asc')->get();
+        }
+
     }
 
-    public function district(){
-        return view('user.baza', [
-            'pagename' => 'Tumanlar',
-            'page'     => 'district',
-            'user'     => $this->user
-        ]);
+    public function district(string $id = null){
+        if ($this->role == User::ROLE_AGENT)
+            return view('user.baza', [
+                'pagename' => 'Tumanlar',
+                'page'     => 'district',
+                'user'     => $this->user
+            ]);
+        elseif ($this->role == User::ROLE_MANAGER)
+            if ($id === null)
+                return view('user.bazamanager', [
+                    'pagename' => "Tumanini ko'rmoqchi bo'lgan agentni tanlang",
+                    'page'     => 'selectuser',
+                    'type'     => 'district',
+                    'users'    => $this->users
+                ]);
+            else
+                return view('user.bazamanager', [
+                    'pagename' => 'Tumanlar',
+                    'page'     => 'district',
+                    'user'     => User::find($id)
+                ]);
     }
 
     public function district_add(Request $request){
@@ -42,13 +69,29 @@ class BazaController extends Controller
         return redirect()->route('user.baza.district');
     }
 
-    public function userobject(){
-        return view('user.baza', [
-            'pagename' => 'Obyektlar',
-            'page'     => 'object',
-            'districts' => District::with('userobjects')->where('user_id', $this->user_id)->get(),
-            'user'     => $this->user
-        ]);
+    public function userobject(string $id = null){
+        if ($this->role == User::ROLE_AGENT)
+            return view('user.baza', [
+                'pagename' => 'Obyektlar',
+                'page'     => 'object',
+                'districts' => District::with('userobjects')->where('user_id', $this->user_id)->get(),
+                'user'     => $this->user
+            ]);
+        elseif ($this->role == User::ROLE_MANAGER)
+            if ($id === null)
+                return view('user.bazamanager', [
+                    'pagename' => "Obyektini ko'rmoqchi bo'lgan agentni tanlang",
+                    'page'     => 'selectuser',
+                    'type'     => 'object',
+                    'users'    => $this->users
+                ]);
+            else
+                return view('user.bazamanager', [
+                    'pagename'  => 'Obyektlar',
+                    'page'      => 'object',
+                    'districts' => District::with('userobjects')->where('user_id', $id)->get(),
+                    'user'      => User::find($id)
+                ]);
     }
 
     public function userobject_add(Request $request){
@@ -67,25 +110,43 @@ class BazaController extends Controller
         return redirect()->route('user.baza.object');
     }
 
-    public function doctor(){
-        $districts = District::with('userobjects')->where('user_id', $this->user_id)->get();
+    public function doctor(string $id = null){
+        if ($this->role == User::ROLE_AGENT)
+        {
+            $districts = District::with('userobjects')->where('user_id', $this->user_id)->get();
 
-        $userobjects = [];
-        foreach ($districts as $district) {
-            foreach ($district->userobjects as $userobject) {
-                $userobjects[$district->id][] = ['id' => $userobject->id, 'name' => $userobject->name];
+            $userobjects = [];
+            foreach ($districts as $district) {
+                foreach ($district->userobjects as $userobject) {
+                    $userobjects[$district->id][] = ['id' => $userobject->id, 'name' => $userobject->name];
+                }
             }
+
+            $userobjects_text = 'let objects = ' . json_encode($userobjects, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . ';';
+
+            return view('user.baza', [
+                'pagename' => 'Shifokorlar',
+                'page'     => 'doctor',
+                'districts' => District::with('userobjects.doctors')->where('user_id', $this->user_id)->get(),
+                'userobjects' => $userobjects_text,
+                'user'     => $this->user
+            ]);
         }
-
-        $userobjects_text = 'let objects = ' . json_encode($userobjects, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . ';';
-
-        return view('user.baza', [
-            'pagename' => 'Shifokorlar',
-            'page'     => 'doctor',
-            'districts' => District::with('userobjects.doctors')->where('user_id', $this->user_id)->get(),
-            'userobjects' => $userobjects_text,
-            'user'     => $this->user
-        ]);
+        elseif ($this->role == User::ROLE_MANAGER)
+            if ($id === null)
+                return view('user.bazamanager', [
+                    'pagename' => "Shifokorlarini ko'rmoqchi bo'lgan agentni tanlang",
+                    'page'     => 'selectuser',
+                    'type'     => 'object',
+                    'users'    => $this->users
+                ]);
+            else
+                return view('user.bazamanager', [
+                    'pagename'  => 'Shifokorlar',
+                    'page'      => 'doctor',
+                    'districts' => District::with('userobjects.doctors')->where('user_id', $id)->get(),
+                    'user'      => User::find($id)
+                ]);
     }
 
     public function doctor_add(Request $request){
@@ -108,13 +169,29 @@ class BazaController extends Controller
         return redirect()->route('user.baza.doctor');
     }
 
-    public function pharmacy(){
-        return view('user.baza', [
-            'pagename' => 'Dorixonalar',
-            'page'     => 'pharmacy',
-            'districts' => District::with('pharmacies')->where('user_id', $this->user_id)->get(),
-            'user'     => $this->user
-        ]);
+    public function pharmacy(string $id = null){
+        if ($this->role == User::ROLE_AGENT)
+            return view('user.baza', [
+                'pagename' => 'Dorixonalar',
+                'page'     => 'pharmacy',
+                'districts' => District::with('pharmacies')->where('user_id', $this->user_id)->get(),
+                'user'     => $this->user
+            ]);
+        elseif ($this->role == User::ROLE_MANAGER)
+            if ($id === null)
+                return view('user.bazamanager', [
+                    'pagename' => "Dorixonasini ko'rmoqchi bo'lgan agentni tanlang",
+                    'page'     => 'selectuser',
+                    'type'     => 'pharmacy',
+                    'users'    => $this->users
+                ]);
+            else
+                return view('user.bazamanager', [
+                    'pagename'  => 'Dorixonalar',
+                    'page'      => 'pharmacy',
+                    'districts' => District::with('pharmacies')->where('user_id', $id)->get(),
+                    'user'      => User::find($id)
+                ]);
     }
 
     public function pharmacy_add(Request $request){

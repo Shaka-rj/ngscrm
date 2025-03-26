@@ -11,7 +11,7 @@ use App\Models\Region;
 class UserController extends Controller
 {
     public function test(){
-        $user = User::find(1);
+        $user = User::find(3);
         Auth::login($user);
 
         return redirect()->route('user.main.index');
