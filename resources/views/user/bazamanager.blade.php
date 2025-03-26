@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.1') }}">
     <link rel="stylesheet" href="{{ asset('css/baza.css?v=1.0.2') }}">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
