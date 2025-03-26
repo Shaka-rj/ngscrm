@@ -11,12 +11,11 @@
         <p></p>
     </div>
     <div class="b">
-        <!--
         <div class="b1">
             <div class="b2">
                 <div class="b3">
                     <div class="b4">
-                        <a href="#">
+                        <a href="{{ route('user.baza.district') }}">
                             <div class="image">
                                 <img src="{{ asset('img/icon/city.png') }}">
                             </div>
@@ -27,7 +26,7 @@
                     </div>
                     
                     <div class="b4">
-                        <a href="#">
+                        <a href="{{ route('user.baza.object') }}">
                             <div class="image">
                                 <img src="{{ asset('img/icon/hospital.png') }}">
                             </div>
@@ -40,7 +39,7 @@
                 
                 <div class="b3">
                     <div class="b4">
-                        <a href="#">
+                        <a href="{{ route('user.baza.doctor') }}">
                             <div class="image">
                                 <img src="{{ asset('img/icon/doctor.png') }}">
                             </div>
@@ -51,7 +50,7 @@
                     </div>
                     
                     <div class="b4">
-                        <a href="#">
+                        <a href="{{ route('user.baza.pharmacy') }}">
                             <div class="image">
                                 <img src="{{ asset('img/icon/pharmacy.png') }}">
                             </div>
@@ -63,6 +62,7 @@
                 </div>
             </div>
             
+            <!--
             <div class="b2">
                 <a href="#">
                     <div class="image">
@@ -73,8 +73,8 @@
                     </div>
                 </a>
             </div>
+            -->
         </div>
-        -->
         
         <div class="b1">
             <div class="b2">

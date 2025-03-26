@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Region;
 
+
 class UserController extends Controller
 {
+    public function test(){
+        $user = User::find(1);
+        Auth::login($user);
+
+        return redirect()->route('user.main.index');
+    }
+
     public function registration(){
         $chat_id = session('chat_id');
         $user = User::where('chat_id', $chat_id)->first();

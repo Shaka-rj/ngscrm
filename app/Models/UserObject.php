@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserObject extends Model
 {
+    protected $table = 'userobjects'; 
     protected $fillable = ['user_id', 'region_id', 'district_id', 'name'];
 
     // Object -> Region
@@ -26,6 +27,6 @@ class UserObject extends Model
 
     // Object -> Doctor
     public function doctors(){
-        return $this->hasMany(Doctor::class);
+        return $this->hasMany(Doctor::class, 'userobject_id');
     }
 }

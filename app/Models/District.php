@@ -21,7 +21,7 @@ class District extends Model
 
     // District -> UserObject
     public function userobjects(){
-        return $this->hasMany(UserObject::class);
+        return $this->hasMany(UserObject::class, 'district_id', 'id');
     }
 
     // District -> Pharmacy

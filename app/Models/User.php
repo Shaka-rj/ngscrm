@@ -47,4 +47,8 @@ class User extends Authenticatable
     public function region(){
         return $this->belongsTo(Region::class, 'region_id');
     }
+
+    public function districts(){
+        return $this->hasMany(District::class);
+    }
 }
