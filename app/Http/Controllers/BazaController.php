@@ -103,7 +103,7 @@ class BazaController extends Controller
 
     public function userobject_add(Request $request){
         $request->validate([
-            'district' => 'required|min:1',
+            'district' => 'required|integer|min:1|not_in:0',
             'name' => 'required|min:1'
         ]);
 
@@ -158,8 +158,8 @@ class BazaController extends Controller
 
     public function doctor_add(Request $request){
         $request->validate([
-            'district' => 'required|min:1',
-            'object' => 'required|min:1',
+            'district' => 'required|integer|min:1|not_in:0',
+            'object' => 'required|integer|min:1|not_in:0',
             'firstname' => 'required|min:1|max:255',
             'lastname' => 'required|min:1|max:255',
         ]);
@@ -203,7 +203,7 @@ class BazaController extends Controller
 
     public function pharmacy_add(Request $request){
         $request->validate([
-            'district' => 'required|min:1',
+            'district' => 'required|integer|min:1|not_in:0',
             'name' => 'required|min:1'
         ]);
 
