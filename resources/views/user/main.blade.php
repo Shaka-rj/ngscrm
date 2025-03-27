@@ -63,8 +63,7 @@
             </div>
             
             <div class="b2">
-                <!--
-                <a href="#">
+                <a href="{{ route('user.location') }}">
                     <div class="image">
                         <img src="{{ asset('img/icon/location.png')}}">
                     </div>
@@ -72,7 +71,6 @@
                         Lokatsiya
                     </div>
                 </a>
-                -->
             </div>
 
         </div>

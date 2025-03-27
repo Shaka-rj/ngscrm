@@ -22,7 +22,7 @@ class UserObject extends Model
 
     // Object -> District
     public function district(){
-        return $this->belongsTo(District::class);
+        return $this->belongsTo(District::class, 'district_id');
     }
 
     // Object -> Doctor

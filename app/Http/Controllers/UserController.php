@@ -11,8 +11,9 @@ use App\Models\Region;
 class UserController extends Controller
 {
     public function test(){
-        $user = User::find(3);
+        $user = User::find(1);
         Auth::login($user);
+        session(['api_token' => $user->createToken('API Token')->plainTextToken]);
 
         return redirect()->route('user.main.index');
     }

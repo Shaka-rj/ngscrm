@@ -8,6 +8,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BazaController;
+use App\Http\Controllers\LocationController;
 use App\Http\Middleware\UserValid;
 
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,12 @@ Route::prefix('user')
     Route::post('baza/doctor/add', [BazaController::class, 'doctor_add'])->name('baza.doctor_add');
     Route::get('baza/pharmacy/{id?}', [BazaController::class, 'pharmacy'])->name('baza.pharmacy');
     Route::post('baza/pharmacy/add', [BazaController::class, 'pharmacy_add'])->name('baza.pharmacy_add');
+
+    Route::get('location', [LocationController::class, 'index'])->name('location');
+    Route::get('location/district', [LocationController::class, 'district'])->name('location.district');
+    Route::get('location/object', [LocationController::class, 'object'])->name('location.object');
+    Route::get('location/doctor', [LocationController::class, 'doctor'])->name('location.doctor');
+    Route::get('location/pharmacy', [LocationController::class, 'pharmacy'])->name('location.pharmacy');
 });
 
 

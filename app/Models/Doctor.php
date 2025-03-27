@@ -28,4 +28,14 @@ class Doctor extends Model
     public function userobjects(){
         return $this->belongsTo(UserObject::class);
     }
+
+    public function object()
+    {
+        return $this->belongsTo(UserObject::class, 'object_id'); 
+    }
+
+    public function userObject()
+    {
+        return $this->belongsTo(UserObject::class, 'userobject_id');
+    }
 }
