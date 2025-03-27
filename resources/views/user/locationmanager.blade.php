@@ -69,7 +69,6 @@
         @endforeach
         @endif
 
-    
     <script>
         $('button').click(function(){
             let btnId = $(this).attr('id');
