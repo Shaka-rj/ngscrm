@@ -35,7 +35,6 @@ class BazaController extends Controller
                     }])
                     ->orderBy('name', 'asc')->get();
         }
-
     }
 
     public function district(string $id = null){

@@ -84,7 +84,7 @@
         let tg = window.Telegram.WebApp;
         tg.BackButton.show();
         tg.onEvent('backButtonClicked', () => {
-            window.location.href = "{{ route('user.main.index') }}";
+            window.location.href = "{{ route('user.location') }}";
         });
 
 

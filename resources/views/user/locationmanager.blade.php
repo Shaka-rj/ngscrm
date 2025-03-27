@@ -1,66 +1,36 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.0') }}">
-    <link rel="stylesheet" href="{{ asset('css/location.css?v=1.0.0') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.1') }}">
+    <link rel="stylesheet" href="{{ asset('css/location.css?v=1.0.2') }}">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
 <body>
     <div class="header">
-        <h3>Lokatsiya junatish</h3>
-        <p>Turini tanlang</p>
+        <h3>Junatilgan lokatsiyalar</h3>
     </div>
-    <div class="b">
-        <div class="b1">
-            <div class="b2">
-                <a href="{{ route('user.location.district') }}">
-                    <div class="image">
-                        <img src="{{ asset('img/icon/city.png') }}">
-                    </div>
-                    <div class="name">
-                        Tumanga kelganlik
-                    </div>
-                </a>
-            </div>
-            
-            <div class="b2">
-                <a href="{{ route('user.location.object') }}">
-                    <div class="image">
-                        <img src="{{ asset('img/icon/hospital.png') }}">
-                    </div>
-                    <div class="name">
-                        Obyektga kelganlik
-                    </div>
-                </a>
-            </div>
-        </div>
-        
-        <div class="b1">
-            <div class="b2">
-                <a href="{{ route('user.location.doctor') }}">
-                    <div class="image">
-                        <img src="{{ asset('img/icon/doctor.png') }}">
-                    </div>
-                    <div class="name">
-                        Shifokorga kelganlik
-                    </div>
-                </a>
-            </div>
-            
-            <div class="b2">
-                <a href="{{ route('user.location.pharmacy') }}">
-                    <div class="image">
-                        <img src="{{ asset('img/icon/pharmacy.png') }}">
-                    </div>
-                    <div class="name">
-                        Dorixonaga kelganlik
-                    </div>
-                </a>
-            </div>            
-        </div>
+    @if (isset($user))
+    <div class="header">
+        <h3>{{ $user->name.' '.$user->lastname }}</h3>
     </div>
-    <div class="list"> 
+    @endif
+    <br>
+
+    @if ($page == "selectuser")
+    <div class="list">
+        @foreach ($users as $region)
+            <div class="item2">
+                <div class="elm name">{{ $region->name }}</div> 
+                @foreach ($region->users as $user)
+                <a href="{{ route('user.location', ['id' => $user->id]) }}" class="listbtn lista" id="addt">{{ $user->name }} {{ $user->lastname }}</a>
+                @endforeach
+            </div>
+        @endforeach
+    </div>
+    @else
+    <div class="list2"> 
         <h4>Yaqinda junatilganlar</h4>
         @foreach ($locations as $location)
             <div class="item">
@@ -97,14 +67,25 @@
                 @endif
             </div>
         @endforeach
-    </div>
+        @endif
 
+    
     <script>
+        $('button').click(function(){
+            let btnId = $(this).attr('id');
+            $('#'+btnId+'item').slideToggle(200); 
+        });
+
+
         //telegram backbutton
         let tg = window.Telegram.WebApp;
         tg.BackButton.show();
         tg.onEvent('backButtonClicked', () => {
-            window.location.href = "{{ route('user.main.index') }}";
+            @if(isset($users))
+                window.location.href = "{{ route('user.main.index') }}";
+            @else
+                window.location.href = "{{ route('user.location') }}";
+            @endif
         });
     </script>
 </body>

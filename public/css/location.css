@@ -1,26 +1,69 @@
-.list h4 {
+.list {
     text-align: center;
 }
 
-.list .item {
+.list .item, .list .item2 {
+    border: 1px solid #000;
+    margin: 4px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+
+.list .listbtn {
+    width: 90%;
+    font-size: 18px;
+    background-color: var(--blue);
+    color: #fff;
+    border: 1px solid var(--blue2);
+    border-radius: 50vh;
+    height: 40px;
+    margin: 10px;
+    margin: 10px auto;
+}
+
+.list .lista {
+    display: block;
+    padding: 10px 0 0 0;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.list .name {
+    color: var(--blue);
+    font-size: 22px;
+}
+.list .name2 {
+    color: var(--blue);
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
+.list2 .item {
     border: 1px solid var(--blue2);
     margin: 10px;
     border-radius: 30px;
     font-size: 16px;
 }
 
-.list .type {
+.list2 .type {
     margin: 0 30px;
 }
 
-.list p {
+.list2 p {
     margin: 0;
 }
 
-.list .items {
+.list2 .items {
     margin-left: 6px;
 }
-.list .item2 {
+.list2 .item2 {
     margin-left: 16px;
 }
 
