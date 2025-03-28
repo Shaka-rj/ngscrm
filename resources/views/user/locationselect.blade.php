@@ -113,6 +113,7 @@
                             tg.showAlert("Saqlandi", async function(result){
                                 if (result) {
                                     await  tg.close();
+                                    console.log('ok');
                                 }
                             });
                            
