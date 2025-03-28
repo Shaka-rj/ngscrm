@@ -110,7 +110,12 @@
                             'Authorization': 'Bearer {{ $api_token }}'
                         },
                         success: function(response) {
-                            tg.close();
+                            tg.showAlert("Saqlandi", async function(result){
+                                if (result) {
+                                    await  tg.close();
+                                }
+                            });
+                           
                             console.log(response['status']);
                         },
                         error: function(xhr, status, error) {
