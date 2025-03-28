@@ -110,11 +110,8 @@
                             'Authorization': 'Bearer {{ $api_token }}'
                         },
                         success: function(response) {
-                            tg.showAlert("Saqlandi", async function(result){
-                                if (result) {
-                                    await  tg.close();
-                                    console.log('ok');
-                                }
+                            tg.showAlert("Muvaffaqiyatli saqlandi!", () => {
+                                tg.close();
                             });
                            
                             console.log(response['status']);
