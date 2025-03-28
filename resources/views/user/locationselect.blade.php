@@ -91,7 +91,9 @@
         $('button').click(function(){
             tg.showPopup({
                 message: "⏳ Yuborilmoqda...",
-                buttons: []
+                buttons: [
+                    { text: "Bekor qilish", type: 'close' }
+                ]
             });
 
             let type_id = $(this).data('id');
