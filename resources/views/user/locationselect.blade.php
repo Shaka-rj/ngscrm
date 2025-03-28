@@ -89,6 +89,11 @@
 
 
         $('button').click(function(){
+            tg.showPopup({
+                message: "⏳ Yuborilmoqda...",
+                buttons: []
+            });
+
             let type_id = $(this).data('id');
 
             if (navigator.geolocation) {
@@ -110,11 +115,13 @@
                             'Authorization': 'Bearer {{ $api_token }}'
                         },
                         success: function(response) {
-                            tg.showAlert("Muvaffaqiyatli saqlandi!", () => {
-                                tg.close();
+                            tg.closePopup();
+                            tg.showPopup({
+                                message: "Saqlandi.",
+                                buttons: [
+                                    { text: "Ilovani yopish", type: 'close' }
+                                ]
                             });
-                           
-                            console.log(response['status']);
                         },
                         error: function(xhr, status, error) {
                             alert('Xatolik: ' + xhr.responseText);
