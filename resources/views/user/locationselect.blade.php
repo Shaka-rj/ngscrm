@@ -2,12 +2,13 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.0') }}">
-    <link rel="stylesheet" href="{{ asset('css/baza.css?v=1.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('css/baza.css?v=1.0.1') }}">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
 <body>
+    <div id="loader" style="display: none;"></div>
     <div class="header">
         <h3>{{ $pagename }}</h3>
     </div>
@@ -89,13 +90,8 @@
 
 
         $('button').click(function(){
-            tg.showPopup({
-                message: "⏳ Yuborilmoqda...",
-                buttons: [
-                    { text: "Bekor qilish", type: 'close' }
-                ]
-            });
-
+            $('#loader').show();
+        
             let type_id = $(this).data('id');
 
             if (navigator.geolocation) {
@@ -117,13 +113,17 @@
                             'Authorization': 'Bearer {{ $api_token }}'
                         },
                         success: function(response) {
-                            tg.closePopup();
-                            tg.showPopup({
-                                message: "Saqlandi.",
-                                buttons: [
-                                    { text: "Ilovani yopish", type: 'close' }
-                                ]
-                            });
+                            $('#loader').hide();
+                            
+                            if (response['status'] == 2){
+                                tg.showAlert("Muvaffaqiyatli saqlandi!", () => {
+                                    tg.close();
+                                });    
+                            } else if (response['status'] == 1){
+                                tg.showAlert(response['time'] + " daqiqadan keyin yana junata olasiz", () => {
+                                    tg.close();
+                                });  
+                            }
                         },
                         error: function(xhr, status, error) {
                             alert('Xatolik: ' + xhr.responseText);
