@@ -13,9 +13,11 @@ class LocationController extends Controller
 {
     public function store(Request $request){
         return response()->json([
-                'status' => 1,
-                'data' => $existingLocation
-            ], 200);
+            'status' => 2,
+            'location' => 'vdbsvbshvsbvbds'
+        ], 201);
+
+
         $validated = $request->validate([
             'user_id'   => 'required|exists:users,id',
             'type'      => 'required|in:district,object,doctor,pharmacy',
