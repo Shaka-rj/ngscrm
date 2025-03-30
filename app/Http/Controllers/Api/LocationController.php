@@ -33,11 +33,6 @@ class LocationController extends Controller
             $timeDiff = Carbon::now()->diffInMinutes($existingLocation->created_at);
             $remainingMinutes = intval(10 - $timeDiff);
             
-            Telegram::sendMessage([
-                'chat_id' => $user->chat_id,
-                'text' => "$remainingMinutes daqiqadan keyin lokaysiya junata olasiz"
-            ]);
-
             return response()->json([
                 'status' => 1,
                 'time' => $remainingMinutes
@@ -46,10 +41,10 @@ class LocationController extends Controller
 
         $location = Location::create($validated);
 
-        Telegram::sendMessage([
-            'chat_id' => $user->chat_id,
-            'text' => "Lokatsiya saqlandi"
-        ]);
+        // Telegram::sendMessage([
+        //     'chat_id' => $user->chat_id,
+        //     'text' => "Lokatsiya saqlandi"
+        // ]);
 
         return response()->json([
             'status' => 2,

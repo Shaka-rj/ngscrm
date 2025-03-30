@@ -1,0 +1,48 @@
+.plan {
+    text-align: center;
+}
+
+
+textarea {
+    font-family: ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    font-size: 18px;
+    width: 94%;
+    height: 70vh;
+    margin: auto;
+    border: 1px solid var(--blue2);
+    border-radius: 20px;
+    padding: 6px;
+    margin: 10px;
+}
+
+.content {
+    font-size: 18px;
+    width: 94%;
+    margin: auto;
+    border: 1px solid var(--blue2);
+    border-radius: 20px;
+    padding: 6px;
+    margin: 10px;
+}
+
+input {
+    margin: 10px;
+    background-color: var(--blue);
+    width: 90%;
+    color: #fff;
+    border: none;
+    border-radius: 50vh;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.planlist h4 {
+    text-align: center;
+}
+.planlist a {
+    display: block;
+    color: var(--blue2);
+    text-decoration: underline;
+    font-weight: bold;
+    margin: 6px 16px;
+}

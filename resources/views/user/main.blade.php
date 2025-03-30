@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.2') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.3') }}">
     
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
@@ -11,6 +11,42 @@
         <p></p>
     </div>
     <div class="b">
+        <div class="b1">
+            <div class="b2">
+                <div class="b3 b6">
+                    <a href="#" class="b5">
+                        <div class="image">
+                            <img src="{{ asset('img/icon/checklist.png') }}">
+                        </div>
+                        <div class="name">
+                            Reja
+                        </div>
+                    </a>
+                </div>
+                <div class="b3 b6">
+                    <a href="#" class="b5">
+                        <div class="image">
+                            <img src="{{ asset('img/icon/calendar.png') }}">
+                        </div>
+                        <div class="name">
+                            Tur plan
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+
+            <div class="b2">
+                <a href="{{ route('user.location') }}">
+                    <div class="image">
+                        <img src="{{ asset('img/icon/location.png')}}">
+                    </div>
+                    <div class="name">
+                        Lokatsiya
+                    </div>
+                </a>
+            </div>
+        </div>
         <div class="b1">
             <div class="b2">
                 <div class="b3">
@@ -63,24 +99,6 @@
             </div>
             
             <div class="b2">
-                <a href="{{ route('user.location') }}">
-                    <div class="image">
-                        <img src="{{ asset('img/icon/location.png')}}">
-                    </div>
-                    <div class="name">
-                        Lokatsiya
-                    </div>
-                </a>
-            </div>
-
-        </div>
-        
-        <div class="b1">
-            <div class="b2">
-            
-            </div>
-            
-            <div class="b2">
                 <a href="{{ route('user.spets.create') }}">
                     <div class="image">
                         <img src="{{ asset('img/icon/spets.png') }}">
@@ -90,6 +108,7 @@
                     </div>
                 </a>
             </div>
+
         </div>
     </div>
 

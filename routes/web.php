@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BazaController;
 use App\Http\Controllers\LocationController;
 use App\Http\Middleware\UserValid;
+use App\Http\Controllers\PlanController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,8 @@ Route::prefix('user')
     Route::get('location/doctor', [LocationController::class, 'doctor'])->name('location.doctor');
     Route::get('location/pharmacy', [LocationController::class, 'pharmacy'])->name('location.pharmacy');
     Route::get('location/{id?}', [LocationController::class, 'index'])->name('location');
+
+    Route::get('plan', [PlanController::class, 'index'])->name('plan');
 });
 
 

@@ -82,6 +82,31 @@ body {
     padding: 6px;
 }
 
+.b5 {
+    margin: 0 10px;
+    width: 100%;
+    overflow: visible !important;
+    text-align: center;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+.b5 .image {
+    height: 16vw;
+    max-height: 150px;
+    width: 100%;
+}
+
+.b5 .image img {
+    height: 100%;
+    width: auto;
+}
+
+.b6 {
+    padding: 6px;
+}
+
 
 .popup {
     width: 90%;
