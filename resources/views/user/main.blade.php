@@ -13,7 +13,7 @@
     <br>
     <div class="b">
         <div class="b1">
-            <div class="b2">
+            <div class="b2" style="display: none;">
                 <div class="b3 b6" style="margin-bottom: 10px;">
                     <a href="#" class="b5">
                         <div class="image">
