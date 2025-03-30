@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.3') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.4') }}">
     
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
@@ -10,10 +10,11 @@
         <h3>BIONYX</h3>
         <p></p>
     </div>
+    <br>
     <div class="b">
         <div class="b1">
             <div class="b2">
-                <div class="b3 b6">
+                <div class="b3 b6" style="margin-bottom: 10px;">
                     <a href="#" class="b5">
                         <div class="image">
                             <img src="{{ asset('img/icon/checklist.png') }}">

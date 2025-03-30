@@ -62,11 +62,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
 }
 
 .b2 {
-    width: 49%;
+    width: 48%;
     padding: 6px;
 }
 
@@ -103,9 +102,6 @@ body {
     width: auto;
 }
 
-.b6 {
-    padding: 6px;
-}
 
 
 .popup {
