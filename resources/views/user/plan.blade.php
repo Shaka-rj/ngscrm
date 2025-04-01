@@ -1,41 +1,42 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="plan2.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('css/plan.css?v=1.0.0') }}">
+
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
 <body>
     <div class="header">
         <h3>Kunlik rejalar</h3>
-        <p>29.03.2023 uchun</p>
+        <p>{{ $date }} uchun</p>
     </div>    
     <div class="content">
-09:00 da uyg'onaman<hr>
-09:30 da ovqat yeyman<hr>
-10:20 da borib vigor farmdan 1000 000 pul olaman yana nimalar qilishi mumkin bilmanyabfda<hr>
+        {!! $content !!}
     </div>
-    
-    
     <div class="planlist">
-        <a href="#">O'zgartirish</a>
-        <a href="#">30.03.2025 uchun reja</a>
+        @if (!isset($noedit))
+        <a href="{{ route('user.plan.edit', ['date' => $date]) }}">O'zgartirish</a>
+        @endif
+    @if (!isset($show))
+        @if ($date != $yesterday)
+        <a href="{{ route('user.plan.edit', ['date' => $yesterday]) }}">{{ $yesterday }} uchun reja</a>
+        @endif
+
         <h4>Avvalgi rejalar</h4>
-        <a href="#">29.03.2025</a>
-        <a href="#">28.03.2025</a>
-        <a href="#">27.03.2025</a>
-        <a href="#">26.03.2025</a>
-        <a href="#">25.03.2025</a>
-        <a href="#">24.03.2025</a>
+        @foreach ($plans as $plan)
+            <a href="{{ route('user.plan.show', ['date' => $plan->date_for]) }}">{{ $plan->date_for }}</a>
+        @endforeach
+    @endif
     </div>
     
-    <div class="plan">
-        <form>
-            <textarea spellcheck="false" id="textarea">09:00 da uyg'onaman
-09:30 da ovqat yeyman
-10:20 da borib vigor farmdan 1000 000 pul olaman
-            </textarea>
-            <input type="submit" value="Saqlash">
-        </form>
-    </div>
+    <script>
+        //telegram backbutton
+        let tg = window.Telegram.WebApp;
+        tg.BackButton.show();
+        tg.onEvent('backButtonClicked', () => {
+            window.location.href = "{{ route($back_route) }}";
+        });
+    </script>
 </body>
 </html>

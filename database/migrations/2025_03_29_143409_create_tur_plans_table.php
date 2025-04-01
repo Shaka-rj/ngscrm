@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('pharmacy_id')->constrained();
             $table->unsignedBigInteger('amount');
             $table->integer('year');
-            $table->integer("month");
+            $table->integer('month');
             $table->timestamps();
         });
     }

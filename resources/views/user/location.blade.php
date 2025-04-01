@@ -60,7 +60,7 @@
             </div>            
         </div>
     </div>
-    <div class="list"> 
+    <div class="list2"> 
         <h4>Yaqinda junatilganlar</h4>
         @foreach ($locations as $location)
             <div class="item">

@@ -11,6 +11,7 @@ use App\Http\Controllers\BazaController;
 use App\Http\Controllers\LocationController;
 use App\Http\Middleware\UserValid;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\TurPlanController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -46,22 +47,45 @@ Route::prefix('user')
 
     Route::get('main', [MainController::class, 'index'])->name('main.index');
 
-    Route::get('baza/district/{id?}', [BazaController::class, 'district'])->name('baza.district');
-    Route::post('baza/district/add', [BazaController::class, 'district_add'])->name('baza.district_add');
-    Route::get('baza/object/{id?}', [BazaController::class, 'userobject'])->name('baza.object');
-    Route::post('baza/object/add', [BazaController::class, 'userobject_add'])->name('baza.object_add');
-    Route::get('baza/doctor/{id?}', [BazaController::class, 'doctor'])->name('baza.doctor');
-    Route::post('baza/doctor/add', [BazaController::class, 'doctor_add'])->name('baza.doctor_add');
-    Route::get('baza/pharmacy/{id?}', [BazaController::class, 'pharmacy'])->name('baza.pharmacy');
-    Route::post('baza/pharmacy/add', [BazaController::class, 'pharmacy_add'])->name('baza.pharmacy_add');
+    Route::prefix('baza')
+    ->name('baza.')
+    ->group(function(){
+        Route::get('district/{id?}', [BazaController::class, 'district'])->name('district');
+        Route::post('district/add',  [BazaController::class, 'district_add'])->name('district_add');
+        Route::get('object/{id?}',   [BazaController::class, 'userobject'])->name('object');
+        Route::post('object/add',    [BazaController::class, 'userobject_add'])->name('object_add');
+        Route::get('doctor/{id?}',   [BazaController::class, 'doctor'])->name('doctor');
+        Route::post('doctor/add',    [BazaController::class, 'doctor_add'])->name('doctor_add');
+        Route::get('pharmacy/{id?}', [BazaController::class, 'pharmacy'])->name('pharmacy');
+        Route::post('pharmacy/add',  [BazaController::class, 'pharmacy_add'])->name('pharmacy_add');
+    });
 
-    Route::get('location/district', [LocationController::class, 'district'])->name('location.district');
-    Route::get('location/object', [LocationController::class, 'object'])->name('location.object');
-    Route::get('location/doctor', [LocationController::class, 'doctor'])->name('location.doctor');
-    Route::get('location/pharmacy', [LocationController::class, 'pharmacy'])->name('location.pharmacy');
-    Route::get('location/{id?}', [LocationController::class, 'index'])->name('location');
+    Route::prefix('location')
+    ->name('location')
+    ->group(function () {
+        Route::get('district', [LocationController::class, 'district'])->name('.district');
+        Route::get('object',   [LocationController::class, 'object'])->name('.object');
+        Route::get('doctor',   [LocationController::class, 'doctor'])->name('.doctor');
+        Route::get('pharmacy', [LocationController::class, 'pharmacy'])->name('.pharmacy');
+        Route::get('/{id?}',   [LocationController::class, 'index'])->name('');
+    });
 
-    Route::get('plan', [PlanController::class, 'index'])->name('plan');
+    Route::prefix('plan')
+    ->name('plan.')
+    ->group(function (){
+        Route::get('/',            [PlanController::class, 'index'])->name('index');
+        Route::get('{date}',       [PlanController::class, 'show'])->name('show');
+        Route::get('edit/{date}',  [PlanController::class, 'edit'])->name('edit');
+        Route::post('edit/{date}', [PlanController::class, 'update'])->name('update');
+    });
+
+    Route::prefix('turplan')
+    ->name('turplan.')
+    ->group(function(){
+        Route::get('/',                [TurPlanController::class, 'index'])->name('index');
+        Route::get('{month_id}',       [TurPlanController::class, 'show'])->name('show');
+        Route::get('edit/{month_id}',  [TurPlanController::class, 'edit'])->name('edit');
+    });
 });
 
 

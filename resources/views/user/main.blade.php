@@ -13,9 +13,9 @@
     <br>
     <div class="b">
         <div class="b1">
-            <div class="b2" style="display: none;">
+            <div class="b2">
                 <div class="b3 b6" style="margin-bottom: 10px;">
-                    <a href="#" class="b5">
+                    <a href="{{ route('user.plan.index') }}" class="b5">
                         <div class="image">
                             <img src="{{ asset('img/icon/checklist.png') }}">
                         </div>
@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <div class="b3 b6">
-                    <a href="#" class="b5">
+                    <a href="{{ route('user.turplan.index') }}" class="b5">
                         <div class="image">
                             <img src="{{ asset('img/icon/calendar.png') }}">
                         </div>
