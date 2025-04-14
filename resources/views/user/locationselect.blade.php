@@ -126,15 +126,24 @@
                             }
                         },
                         error: function(xhr, status, error) {
-                            alert('Xatolik: ' + xhr.responseText);
+                            $('#loader').hide();
+                            tg.showAlert('Xatolik yuz berdi', () => {
+                                tg.close();
+                            });
                         }
                     });
 
                 }, function(error) {
-                    alert('Geolokatsiyani olishda xatolik: ' + error.message);
+                    $('#loader').hide();
+                    tg.showAlert('Geolokatsiyani olishda xatolik.', () => {
+                        tg.close();
+                    });
                 });
             } else {
-                alert('Brauzeringiz Geolocation API ni qo‘llab-quvvatlamaydi.');
+                $('#loader').hide();
+                tg.showAlert('Brauzeringiz Geolocation API ni qo‘llab-quvvatlamaydi.', () => {
+                    tg.close();
+                });
             }
         });
     </script>
