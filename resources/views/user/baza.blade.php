@@ -2,7 +2,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
     <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.0') }}">
-    <link rel="stylesheet" href="{{ asset('css/baza.css?v=1.0.3') }}">
+    <link rel="stylesheet" href="{{ asset('css/baza.css?v=1.0.4') }}">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
@@ -139,7 +139,7 @@
 
     @endif
 
-    <div style="height: 100px;"></div>
+    <div style="height: 200px;"></div>
     
     <script>
         $('button').click(function(){
