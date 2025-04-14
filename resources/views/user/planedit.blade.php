@@ -20,9 +20,9 @@
             <input type="submit" value="Saqlash">
         </form>
     </div>
-
+<br><br><br><br><br>
     <div style="height: 200px;"></div>
-    
+
     <script>
         //telegram backbutton
         let tg = window.Telegram.WebApp;
