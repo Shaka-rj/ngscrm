@@ -138,6 +138,8 @@
     </div>
 
     @endif
+
+    <div style="height: 100px;"></div>
     
     <script>
         $('button').click(function(){
