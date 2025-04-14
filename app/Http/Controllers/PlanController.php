@@ -35,7 +35,7 @@ class PlanController extends Controller
             if ($plan){
                 $content = str_replace("\n", "<hr>", $plan->content);
             } else {
-                $content = '';
+                $content = 'shu yerga yozing';
             }
 
             $plans = Plan::where('user_id', $this->user_id)
