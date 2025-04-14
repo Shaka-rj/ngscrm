@@ -77,6 +77,7 @@ Route::prefix('user')
         Route::get('{date}',       [PlanController::class, 'show'])->name('show');
         Route::get('edit/{date}',  [PlanController::class, 'edit'])->name('edit');
         Route::post('edit/{date}', [PlanController::class, 'update'])->name('update');
+        Route::get('user/{id}/{date?}', [PlanController::class, 'usershow'])->name('user');
     });
 
     Route::prefix('turplan')
