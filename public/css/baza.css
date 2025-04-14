@@ -90,10 +90,3 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
-@supports (-webkit-touch-callout: none) {
-  input {
-    position: absolute !important;
-    bottom: env(safe-area-inset-bottom); /* iPhone X va boshqalar uchun */
-  }
-}
