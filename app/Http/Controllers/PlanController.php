@@ -63,7 +63,7 @@ class PlanController extends Controller
             return view('user.planmanager', [
                 'pagename' => "Rejasini ko'rmoqchi bo'lgan agentni tanlang",
                 'users'    => $this->users,
-                'back_route' => 'user.main.index'
+                'back_route' => route('user.main.index')
             ]);
         }
     }
