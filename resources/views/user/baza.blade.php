@@ -1,6 +1,6 @@
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
     <link rel="stylesheet" href="{{ asset('css/main.css?v=1.0.0') }}">
     <link rel="stylesheet" href="{{ asset('css/baza.css?v=1.0.0') }}">
     
@@ -169,6 +169,14 @@
         tg.onEvent('backButtonClicked', () => {
             window.location.href = "{{ route('user.main.index') }}";
         });
+
+
+          const input = document.querySelector('input');
+          input.addEventListener('focus', () => {
+            setTimeout(() => {
+              input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300); // klaviatura ochilishi uchun vaqt beriladi
+          });
     </script>
 </body>
 </html>
