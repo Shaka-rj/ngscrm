@@ -21,6 +21,8 @@
         </form>
     </div>
 
+    <div style="height: 200px;"></div>
+    
     <script>
         //telegram backbutton
         let tg = window.Telegram.WebApp;
