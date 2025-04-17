@@ -86,6 +86,7 @@ Route::prefix('user')
         Route::get('/',                [TurPlanController::class, 'index'])->name('index');
         Route::get('{month_id}',       [TurPlanController::class, 'show'])->name('show');
         Route::get('edit/{month_id}',  [TurPlanController::class, 'edit'])->name('edit');
+        Route::get('user/{id}/{month_id?}', [TurPlanController::class, 'usershow'])->name('user');
     });
 });
 
