@@ -33,6 +33,8 @@ Route::prefix('admin')
     Route::get('users/requests/3/{id}', [AdminUserController::class, 'confirm_manager_regions']);
     Route::post('users/requests/3/{id}', [AdminUserController::class, 'confirm_manager'])->name('user.confim.manager');
 
+    Route::get('users/locations', [AdminUserController::class, 'locations'])->name('user.locations');
+
 });
 
 Route::prefix('user')

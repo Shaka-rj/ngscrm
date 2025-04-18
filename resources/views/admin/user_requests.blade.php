@@ -1,56 +1,42 @@
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{{ asset('css/admin_users.css') }}">
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <div class="top-nav">
-        <a href="#">Hodimlar</a>
-        <a href="#">Mahsulotlar</a>
-        <a href="#">Chiqish</a>
-    </div>
-    <div class="container">
-        <div class="navigation">
-            <a href="#">Ro'yxat</a>
-            <a href="#" class="active">Kirish so'rovlari</a>
+@extends('admin.layouts.user')
+
+@section('title', 'Kirish surovlari')
+
+@section('content')
+    <div class="content">
+        <div class="job_request" id="job_request">
         </div>
-        <div class="content">
-            <div class="job_request" id="job_request">
-            </div>
-            @if ($type == 1)
-            @foreach ($users as $user)
-                <div class="requests">
-                    <div class="name" id="{{ $user->id }}">
-                        {{ $user->name }} - {{ $user->lastname }}
-                    </div>
-                    <div class="region">
-                        {{ $user->region->name }}
-                    </div>
-                    <div class="action">
-                        <button data-userid="{{ $user->id }}" data-type="1"  class="blue"><img src="{{ asset('img/icon/check.svg') }}"></button>
-                        <button data-userid="{{ $user->id }}" data-type="0" class="red"><img src="{{ asset('img/icon/delete.svg') }}"></button>
-                    </div>
+        @if ($type == 1)
+        @foreach ($users as $user)
+            <div class="requests">
+                <div class="name" id="{{ $user->id }}">
+                    {{ $user->name }} - {{ $user->lastname }}
                 </div>
-            @endforeach
-            @elseif ($type == 2)
-            <h3>{{ $user->name }}ni qaysi hududlarga menejer qilmoqchisiz?</h3>
-            <div class="selectregion">
-                <form method="post" action="{{ route('admin.user.confim.manager', ['id' => $user->id]) }}">
-                    @csrf
-                    @foreach ($regions as $region)
-                        <div class="checkbox">
-                            <input type="checkbox" name="regions[]" value="{{ $region->id }}" id="ch{{ $region->id }}">
-                            <label for="ch{{ $region->id }}">{{ $region->name }}</label>
-                        </div>
-                    @endforeach
-                    
-                    <input type="submit" name="submit" value="Saqlash">
-                </form>
+                <div class="region">
+                    {{ $user->region->name }}
+                </div>
+                <div class="action">
+                    <button data-userid="{{ $user->id }}" data-type="1"  class="blue"><img src="{{ asset('img/icon/check.svg') }}"></button>
+                    <button data-userid="{{ $user->id }}" data-type="0" class="red"><img src="{{ asset('img/icon/delete.svg') }}"></button>
+                </div>
             </div>
-            @endif
+        @endforeach
+        @elseif ($type == 2)
+        <h3>{{ $user->name }}ni qaysi hududlarga menejer qilmoqchisiz?</h3>
+        <div class="selectregion">
+            <form method="post" action="{{ route('admin.user.confim.manager', ['id' => $user->id]) }}">
+                @csrf
+                @foreach ($regions as $region)
+                    <div class="checkbox">
+                        <input type="checkbox" name="regions[]" value="{{ $region->id }}" id="ch{{ $region->id }}">
+                        <label for="ch{{ $region->id }}">{{ $region->name }}</label>
+                    </div>
+                @endforeach
+                    
+                <input type="submit" name="submit" value="Saqlash">
+            </form>
         </div>
+        @endif
     </div>
     <script>
         function hide(){
@@ -103,5 +89,4 @@
             });
         });
     </script>
-</body>
-</html>s
+@endsection
