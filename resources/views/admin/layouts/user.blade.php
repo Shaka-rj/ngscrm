@@ -9,6 +9,7 @@
     @include('admin.layouts.topnav')
     <div class="container">
         @include('admin.layouts.navigation')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         @yield('content')
     </div>
 </body>

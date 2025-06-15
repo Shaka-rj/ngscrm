@@ -7,6 +7,7 @@ use App\Http\Controllers\SpetsController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\BazaController as AdminBazaController;
 use App\Http\Controllers\BazaController;
 use App\Http\Controllers\LocationController;
 use App\Http\Middleware\UserValid;
@@ -26,15 +27,31 @@ Route::prefix('admin')
     Route::resource('products', ProductController::class);
     Route::get('/products/{product}/delete', [ProductController::class, 'destroy'])->name('admin.products.delete');
 
-    Route::get('users', [AdminUserController::class, 'index'])->name('user.list');
-    Route::get('users/requests', [AdminUserController::class, 'requests'])->name('user.requests');
-    Route::get('users/requests/0/{id}', [AdminUserController::class, 'cancel_user']);
-    Route::get('users/requests/2/{id}', [AdminUserController::class, 'confirm_agent']);
-    Route::get('users/requests/3/{id}', [AdminUserController::class, 'confirm_manager_regions']);
-    Route::post('users/requests/3/{id}', [AdminUserController::class, 'confirm_manager'])->name('user.confim.manager');
+    Route::prefix('users')
+    ->name('user.')
+    ->group(function(){
+        Route::get('/',                [AdminUserController::class, 'index'])->name('list');
+        Route::get('requests',         [AdminUserController::class, 'requests'])->name('requests');
+        Route::get('requests/0/{id}',  [AdminUserController::class, 'cancel_user']);
+        Route::get('requests/2/{id}',  [AdminUserController::class, 'confirm_agent']);
+        Route::get('requests/3/{id}',  [AdminUserController::class, 'confirm_manager_regions']);
+        Route::post('requests/3/{id}', [AdminUserController::class, 'confirm_manager'])->name('confim.manager');
 
-    Route::get('users/locations', [AdminUserController::class, 'locations'])->name('user.locations');
+        Route::get('locations', [AdminUserController::class, 'locations'])->name('locations');
 
+        Route::prefix('baza')
+        ->name('baza.')
+        ->group(function(){
+            Route::get('district/{id?}', [AdminBazaController::class, 'district'])->name('district');
+            Route::get('object/{id?}',   [AdminBazaController::class, 'userobject'])->name('object');
+            Route::get('doctor/{id?}',   [AdminBazaController::class, 'doctor'])->name('doctor');
+            Route::get('pharmacy/{id?}', [AdminBazaController::class, 'pharmacy'])->name('pharmacy');
+
+            Route::get('edit/{type}/{id}',    [AdminBazaController::class, 'edit'])->name('edit');
+            Route::post('update/{type}/{id}', [AdminBazaController::class, 'update'])->name('update');
+            Route::get('delete/{type}/{id}',  [AdminBazaController::class, 'delete'])->name('delete');
+        });
+    });
 });
 
 Route::prefix('user')
