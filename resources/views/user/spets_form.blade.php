@@ -55,7 +55,7 @@
                 <select name="company">
                     <option value="2">{{ config('companies.2.name') }}</option>
                     <option value="1">{{ config('companies.1.name') }}</option>
-                    <option value="1">{{ config('companies.3.name') }}</option>
+                    <option value="3">{{ config('companies.3.name') }}</option>
                 </select> 
             </div>
             
