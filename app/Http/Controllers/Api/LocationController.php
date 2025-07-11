@@ -81,7 +81,7 @@ class LocationController extends Controller
 
 
         Telegram::sendMessage([
-            'chat_id' => env('EVENT_CHANNEL_ID'),
+            'chat_id' => -1002586487332,
             'text' => $user_txt.$type_txt,
             'parse_mode' => 'HTML',
             'disable_web_page_preview' => true
