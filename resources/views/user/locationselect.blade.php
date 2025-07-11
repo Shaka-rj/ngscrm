@@ -127,6 +127,19 @@
                         },
                         error: function(xhr, status, error) {
                             $('#loader').hide();
+
+
+                            let msg = 'Xatolik yuz berdi.';
+
+                            // Kengaytirilgan xatolik haqida xabar
+                            if (xhr.responseJSON && xhr.responseJSON.message) {
+                                msg = xhr.responseJSON.message;
+                            } else if (xhr.status === 0) {
+                                msg = 'Serverga ulanib bo‘lmadi. Internet aloqangizni tekshiring.';
+                            } else {
+                                msg = `Xatolik kodi: ${xhr.status}\nXabar: ${xhr.statusText}`;
+                            }
+                    
                             tg.showAlert('Xatolik yuz berdi', () => {
                                 tg.close();
                             });
