@@ -139,8 +139,10 @@
                             } else {
                                 msg = `Xatolik kodi: ${xhr.status}\nXabar: ${xhr.statusText}`;
                             }
-                    
-                            tg.showAlert('Xatolik yuz berdi', () => {
+
+                            //tg.showAlert(msg, () => tg.close());
+
+                            tg.showAlert(msg, () => {
                                 tg.close();
                             });
                         }
