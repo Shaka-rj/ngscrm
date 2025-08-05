@@ -101,12 +101,12 @@ class SpetsController extends Controller
     public function show($id) {
         $spets = Spets::findOrFail($id);
 
-        $date = date("d.m.Y H:i", strtotime($spets['created_at'])).". $spets[custom_id]-sonli";
+        $date = date("d.m.Y H:i", strtotime($spets['created_at'])).". № $spets[custom_id]";
 
         $this->generateimage();
 
         $this->centertext($date, 130, 24);
-        $this->centertext("Spetsfikatsiya", 80, 24);
+        $this->centertext("СПЕЦИФИКАЦИЯ", 80, 24);
         
 
         $company_id = $spets['company'];
@@ -115,26 +115,24 @@ class SpetsController extends Controller
         $this->text("Xaridor: ".$spets['customer'], 900, 240);
 
         $texts = [
-            ["№", "Наименование препарата", "Birligi", "Narx", "QQS", "QQS bilan\n  narxi", "Soni", "Jami narxi", "Yaroqlilik\n muddati"]
+            ["№", "Наименование препарата", "Ед.изм.", "Кол-во", "Цена за единицу сум", "НДС 12%", "Стоимость поставки\nс НДС",]
         ];
 
         $i = 0;
         foreach ($spets['details'] as $v){
             $i++;
 
-            if ($v['type_price'] == 0)
+
                 $texts[] = [
                     $i,
                     $v['product']['name'],
-                    "dona",
-                    number_format($v['product']['price'], 2, '.', ' '),
-                    $v['product']['vat_percent'].'%',
-                    number_format($v['product']['price_after_vat'], 2, '.', ' '),
+                    "уп",
                     $v['count'],
+                    number_format($v['product']['price'], 2, '.', ' '),
+                    number_format($v['product']['price_after_vat']/100*12*$v['count'], 2, '.', ' '),
                     number_format($v['summ'], 2, '.', ' '),
-                    $v['product']['expired_data']
                 ];
-            else
+            
             $texts[] = [
                 $i,
                 $v['product']['name'],
@@ -147,7 +145,7 @@ class SpetsController extends Controller
                 number_format($v['summ'], 2, '.', ' '),
                 $v['product']['expired_data']
             ];
-        }
+        
 
         $texts[] = ['', "Jami:", '', '', '', '', '', '', number_format($spets['summ'], 2, '.', ' '), ''];
 
