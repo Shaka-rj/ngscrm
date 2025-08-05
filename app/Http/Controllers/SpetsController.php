@@ -115,7 +115,7 @@ class SpetsController extends Controller
         $this->text("Xaridor: ".$spets['customer'], 900, 240);
 
         $texts = [
-            ["№", "Наименование препарата", "Ед.изм.", "Кол-во", "Цена за единицу сум", "НДС 12%", "Стоимость поставки\nс НДС",]
+            ["№", "Наименование препарата", "Ед.изм.", "Кол-во", "Цена за\nединицу сум", "НДС 12%", "Стоимость поставки\nс НДС",]
         ];
 
         $i = 0;
@@ -180,16 +180,15 @@ class SpetsController extends Controller
         $folder = 'public/spets'; 
         $filename = date('Y').'-'. $id . '.png';
         $path = storage_path("app/$folder/$filename");
-        //imagepng($image, $path);
-          header('Content-Type: image/png');
-        imagepng($image);
+        imagepng($image, $path);
+
         imagedestroy($image);
         
         
-        // Telegram::sendDocument([
-        //     'chat_id' => session('chat_id'),
-        //     'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
-        // ]);
+        Telegram::sendDocument([
+            'chat_id' => session('chat_id'),
+            'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
+        ]);
         
 
         return view('user.closewebapp');
