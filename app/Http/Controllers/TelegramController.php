@@ -50,7 +50,10 @@ class TelegramController extends Controller
         $update = Telegram::commandsHandler(true);
         $message = $request->input('message.text');
         $chatId = $request->input('message.chat.id');
-
+Telegram::sendMessage([
+        'chat_id' => 933737734,
+        'text' => "Hello Sir"
+    ]);
         if ($message) {
             if ($message == '/start'){
                 Telegram::sendMessage([
