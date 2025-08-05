@@ -115,7 +115,7 @@ class SpetsController extends Controller
         $this->text("Xaridor: ".$spets['customer'], 900, 240);
 
         $texts = [
-            ["N", "Nomi", "Bazaviy narx", "Ustama", "Narx", "QQS", "QQS bilan\n  narxi", "Soni", "Jami narxi", "Yaroqlilik\n muddati"]
+            ["№", "Наименование препарата", "Birligi", "Narx", "QQS", "QQS bilan\n  narxi", "Soni", "Jami narxi", "Yaroqlilik\n muddati"]
         ];
 
         $i = 0;
@@ -126,8 +126,7 @@ class SpetsController extends Controller
                 $texts[] = [
                     $i,
                     $v['product']['name'],
-                    number_format($v['product']['main_price'], 2, '.', ' '),
-                    $v['product']['main_percent'].'%',
+                    "dona",
                     number_format($v['product']['price'], 2, '.', ' '),
                     $v['product']['vat_percent'].'%',
                     number_format($v['product']['price_after_vat'], 2, '.', ' '),
@@ -198,7 +197,6 @@ class SpetsController extends Controller
         $path = storage_path("app/$folder/$filename");
         //imagepng($image, $path);
           header('Content-Type: image/png');
-    header('Content-Disposition: attachment; filename="rasm.png"');
         imagepng($image);
         imagedestroy($image);
         
