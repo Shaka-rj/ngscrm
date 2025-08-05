@@ -66,7 +66,7 @@ class TelegramController extends Controller
     public function test(){
     // route get
     Telegram::sendMessage([
-        'chat_id' => 111,
+        'chat_id' => 933737734,
         'text' => "Hello Sir"
     ]);
 
