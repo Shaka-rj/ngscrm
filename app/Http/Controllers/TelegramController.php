@@ -21,7 +21,7 @@ class TelegramController extends Controller
 
         $check_hash = $req['hash'];
 
-        $data_check_string = "auth_date=$req[auth_date]\nquery_id=$req[query_id]\nsignature=$req[signature]\nuser=$req[user]";
+        $data_check_string =1;// "auth_date=$req[auth_date]\nquery_id=$req[query_id]\nsignature=$req[signature]\nuser=$req[user]";
 
         $secret_key = hash_hmac('sha256', $bot_token, "WebAppData", true);
         $hash = bin2hex(hash_hmac('sha256', $data_check_string, $secret_key, true) );
