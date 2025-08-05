@@ -139,7 +139,7 @@ class SpetsController extends Controller
         if ($spets['after_pay'] == 50)
             $texts[] = ['', "50% oldindan to'lov:", '', '', '', '', '', '', number_format($spets['summ']/2, 2, '.', ' '), ''];
 
-        $ceilxs = [50, 320, 200, 110, 200, 100, 200, 100, 220, 140];
+        $ceilxs = [50, 420, 120, 110, 600, 100, 200, 100];
 
         $lasty = 300;
         $text_count = count($texts) - 1;
