@@ -196,7 +196,8 @@ class SpetsController extends Controller
         $folder = 'public/spets'; 
         $filename = date('Y').'-'. $id . '.png';
         $path = storage_path("app/$folder/$filename");
-        imagepng($image, $path);
+        //imagepng($image, $path);
+        imagepng($image);
         imagedestroy($image);
         
         
