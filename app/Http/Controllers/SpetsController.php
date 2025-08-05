@@ -197,14 +197,16 @@ class SpetsController extends Controller
         $filename = date('Y').'-'. $id . '.png';
         $path = storage_path("app/$folder/$filename");
         //imagepng($image, $path);
+          header('Content-Type: image/png');
+    header('Content-Disposition: attachment; filename="rasm.png"');
         imagepng($image);
         imagedestroy($image);
         
         
-        Telegram::sendDocument([
-            'chat_id' => session('chat_id'),
-            'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
-        ]);
+        // Telegram::sendDocument([
+        //     'chat_id' => session('chat_id'),
+        //     'document' =>  InputFile::create(storage_path("app/$folder/$filename")),
+        // ]);
         
 
         return view('user.closewebapp');
