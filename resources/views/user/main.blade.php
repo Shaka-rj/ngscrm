@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="header">
-        <h3>BIONYX</h3>
+        <h3>NEO GROUP STYLE</h3>
         <p></p>
     </div>
     <br>
