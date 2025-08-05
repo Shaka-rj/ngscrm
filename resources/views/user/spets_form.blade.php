@@ -7,10 +7,6 @@
 </head>
 <body>
     <div class="spets-container">
-        <div class="special-price">
-            <a href="{{ route('user.spets.create2') }}">Maxsus narx buyicha hisoblash</a>
-        </div>
-        <br>
         <form id="form" method="POST" action="{{ route('user.spets.store') }}">
             @csrf
             <input type="hidden" name="type_price" value="0">
@@ -42,7 +38,7 @@
                 <span id="jami">0.00</span>
             </div>
 
-            <div class="after_pay">
+            <div class="after_pay" style="display:none;">
                 <h4>Oldindan to'lov</h4>
                 <input type="radio" id="100p" name="after_pay" value="100" checked>
                 <label for="100p">100%</label><br>
@@ -51,7 +47,7 @@
             </div>
             
             
-            <div class="company">
+            <div class="company" style="display: none;">
                 <select name="company">
                     <option value="2">{{ config('companies.2.name') }}</option>
                     <option value="1">{{ config('companies.1.name') }}</option>

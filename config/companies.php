@@ -8,9 +8,9 @@ return [
  	],
 
  	2 => [
- 		'name' => "BIONYX",
-		'full_name' => "BIONYX MCHJ",
-		'logo_path' => 'img/logo/bionyx.png',
+ 		'name' => "Neo Group Style",
+		'full_name' => "NEO GROUP STYLE MCHJ",
+		'logo_path' => 'img/logo/ngs.png',
  	],
 
  	3 => [
