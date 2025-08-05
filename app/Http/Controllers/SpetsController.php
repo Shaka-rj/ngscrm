@@ -186,7 +186,7 @@ class SpetsController extends Controller
 $i = 900;
     foreach ($texts as $v){
         $this->text($v, 300, $i, null, 1);
-        $i+=6
+        $i+=6;
     }
 
         $logo = imagecreatefrompng(public_path(config('companies.'.$company_id.'.logo_path')));
