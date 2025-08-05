@@ -132,22 +132,9 @@ class SpetsController extends Controller
                     number_format($v['product']['price_after_vat']/100*12*$v['count'], 2, '.', ' '),
                     number_format($v['summ'], 2, '.', ' '),
                 ];
-            
-            $texts[] = [
-                $i,
-                $v['product']['name'],
-                number_format($v['product']['main_price2'], 2, '.', ' '),
-                $v['product']['main_percent2'].'%',
-                number_format($v['product']['price2'], 2, '.', ' '),
-                $v['product']['vat_percent2'].'%',
-                number_format($v['product']['price_after_vat2'], 2, '.', ' '),
-                $v['count'],
-                number_format($v['summ'], 2, '.', ' '),
-                $v['product']['expired_data']
-            ];
         }
 
-        $texts[] = ['', "Jami:", '', '', '', '', '', '', number_format($spets['summ'], 2, '.', ' '), ''];
+        $texts[] = ['', "ИТОГО:", '', '', '', '', number_format($spets['summ'], 2, '.', ' ')];
 
         if ($spets['after_pay'] == 50)
             $texts[] = ['', "50% oldindan to'lov:", '', '', '', '', '', '', number_format($spets['summ']/2, 2, '.', ' '), ''];
