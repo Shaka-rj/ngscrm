@@ -38,6 +38,7 @@ class TelegramController extends Controller
             }
 
             Auth::login($user);
+            dd($user);
             session(['api_token' => $user->createToken('API Token')->plainTextToken]);
             return redirect()->route('user.main.index');
         } else {
