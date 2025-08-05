@@ -171,6 +171,19 @@ class SpetsController extends Controller
             
         }
 
+
+        $this->text("OOO \"NEO GROUP STYLE\"          
+\nг. Ташкент, Яшнобод тумани 2-Корасу, 3-Берк кучаси 1-уй           
+\nр/с: 2020 8000 6054 1930 3001           
+\nХАТБ Универсал банк Ташкент ф-л         
+\nМФО: 00973          
+\nИНН: 308 710 874            
+\nОКЭД: 46 900            
+\nТел: +99 888 870 78 82          
+\n\n           
+Директор                                Тухтайев Ғ.Ф                                         
+", 300, 1000, null, 1);
+
         $logo = imagecreatefrompng(public_path(config('companies.'.$company_id.'.logo_path')));
         imagecopy($this->image, $logo, 80, 24, 0, 0, 300, 150);
         
