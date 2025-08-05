@@ -145,7 +145,7 @@ class SpetsController extends Controller
                 number_format($v['summ'], 2, '.', ' '),
                 $v['product']['expired_data']
             ];
-        
+        }
 
         $texts[] = ['', "Jami:", '', '', '', '', '', '', number_format($spets['summ'], 2, '.', ' '), ''];
 
