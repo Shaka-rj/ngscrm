@@ -13,6 +13,7 @@
         <h3>Tur plan</h3>
         <p>{{ $month_name }} oyi uchun</p>
     </div>
+    
     <br>
     
     <div class="list">
